@@ -1,0 +1,83 @@
+/* Coolors Exported Palette - coolors.co/856a5d-423e37-ca5310-edebd7-ffc000 */
+/* RGB */
+html {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  color: #423e37;
+  background-color: whitesmoke;
+  height: 100vh; }
+  html a {
+    color: #444; }
+
+body {
+  display: flex;
+  width: 100%;
+  margin: 0px; }
+
+h1 {
+  font-size: 2em;
+  color: #423e37;
+  text-transform: uppercase; }
+
+h2 {
+  color: #e96012;
+  font-size: 1.5em;
+  margin: 10px 0px; }
+
+p {
+  font-size: 1em; }
+
+a {
+  color: #3496fa; }
+
+/********************
+  WIDGETS
+
+********************/
+.question-help {
+  display: inline;
+  margin-left: 5px; }
+  .question-help i {
+    color: #3496fa;
+    font-size: 1.2em;
+    opacity: .7; }
+    .question-help i:hover {
+      opacity: 1; }
+  .question-help .tooltip {
+    background-color: white;
+    color: #444;
+    display: none;
+    position: absolute;
+    width: 320px;
+    border-radius: 5px;
+    padding: 0px;
+    z-index: 101;
+    box-shadow: -3px 5px 10px rgba(0, 0, 0, 0.4); }
+    .question-help .tooltip .header {
+      line-height: 40px;
+      background-color: #c9e3fe;
+      border-radius: 5px 5px 0px 0px;
+      font-weight: bold;
+      text-transform: uppercase; }
+    .question-help .tooltip .description {
+      padding: 10px;
+      font-weight: lighter;
+      font-size: 1em; }
+    .question-help .tooltip:before {
+      border-width: 11px;
+      border-style: solid;
+      border-color: transparent;
+      content: "";
+      display: block;
+      margin: auto;
+      width: 0px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      border-top-color: white;
+      border-bottom-width: 0;
+      bottom: -11px; }
+
+/*# sourceMappingURL=common.css.map */
