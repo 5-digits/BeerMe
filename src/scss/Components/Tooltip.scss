@@ -1,0 +1,39 @@
+/* Tooltip */
+.tooltip {
+  background-color: white;
+  color: #444;
+  display: none;
+  position: absolute;
+  width: 320px;
+  border-radius: 5px;
+  padding: 0px;
+  z-index: 101;
+  box-shadow: -3px 5px 10px rgba(0, 0, 0, .4);
+  .header {
+    line-height: 40px;
+    background-color: lighten(#3496fa, 30%);
+    border-radius: 5px 5px 0px 0px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .description {
+    padding: 10px;
+    font-weight: lighter;
+    font-size: 1em;
+  }
+  &:before {
+    border-width: 11px;
+    border-style: solid;
+    border-color: transparent;
+    content: "";
+    display: block;
+    margin: auto;
+    width: 0px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top-color: white;
+    border-bottom-width: 0;
+    bottom: -11px;
+  }
+}

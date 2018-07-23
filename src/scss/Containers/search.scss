@@ -1,15 +1,4 @@
-@import  "./partials/_colors";
-@import "./partials/_animations";
-
-
-body {
-  overflow: hidden;
-}
-
-header {
-  top: 100vh;
-  animation: 2s 1s slide-up forwards;
-}
+/* Search */
 
 #liquid {
   background-color: $background-primary;
@@ -136,7 +125,7 @@ header {
         }
       }
 
-      input[type="submit"] {
+      button[type="submit"] {
         color: #f4f4f4;
         font-size: 1.2em;
         text-transform: uppercase;

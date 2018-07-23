@@ -1,0 +1,68 @@
+/* Common */
+
+html {
+  font-family: 'Roboto', sans-serif;
+  // display: flex;
+  // flex-direction: row;
+  font-size: 16px;
+  color: $text-primary;
+  // background-color: whitesmoke;
+  // height: 100vh;
+  a {
+    color: #444;
+  }
+}
+
+body {
+  width: 100%;
+  margin: 0px;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  margin: 0px;
+  height: 100vh;
+}
+
+.fill-beer .main-container {
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2em;
+  color: $text-primary;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: $text-secondary;
+  font-size: 1.5em;
+  margin: 10px 0px;
+}
+p {
+  font-size: 1em;
+}
+
+a {
+  color: $link-color;
+}
+
+/********************
+  WIDGETS
+
+********************/
+
+// Help ToolTip
+.question-help{
+  display: inline;
+  margin-left: 5px;
+  i {
+    color: $link-color;
+    font-size: 1.2em;
+    opacity: .7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
-//Styles
-import '../css/results.css';
-
 class Results extends Component {
+
+  componentWillMount() {
+    this.props.appInitiator(0);
+  }
+
   render() {
+    // const { match } = this.props;
+
     return (
       <section id="results-section">
         <div id="results">
