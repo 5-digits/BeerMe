@@ -18,9 +18,11 @@ class StyleSelect extends Component {
         beerStyle : selection
       });
 
+      const beerStyleID = selection ? selection.value : '';
+
       this.props.updateSearchQuery({
         ...this.props.state.searchQuery,
-        beerStyleID : selection.value
+        beerStyleID : beerStyleID
       });
   }
 

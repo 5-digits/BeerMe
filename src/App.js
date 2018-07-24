@@ -17,7 +17,8 @@ class App extends Component {
         searchQuery: {
           beerStyleID : "",
           srmColorID : ""
-        }
+        },
+        searchResults: {}
     }
   }
 
@@ -42,27 +43,37 @@ class App extends Component {
     });
   }
 
+  updateSearchResults = ( newResults ) => {
+    this.setState( {
+      ...this.state,
+      searchResults : newResults
+    });
+  }
+
   render() {
     const isAppInitiated = this.state.isAppInitiated;
+    let pourAnimation = !isAppInitiated ? <div id="liquid"></div> : '';
 
     return (
       <BrowserRouter >
         <div className={ !isAppInitiated ? "main-container fill-beer" : "main-container" }>
-          { !isAppInitiated ? <div id="liquid"></div> : ''  }
-
+          { pourAnimation }
           <Header />
 
           <Route exact path="/"
             render= { (props) =>
                <Search { ...props }
                  state={ this.state }
-                 updateSearchQuery={ this.updateSearchQuery } />
+                 updateSearchQuery={ this.updateSearchQuery }
+                 updateSearchResults={ this.updateSearchResults } />
              }
           />
 
           <Route path="/beer/:id"
             render= { (props) =>
-              <Results { ...props } appInitiator= { this.initiateAppStateAt } />
+              <Results { ...props }
+                state= { this.state }
+                appInitiator= { this.initiateAppStateAt } />
             }
           />
         </div>

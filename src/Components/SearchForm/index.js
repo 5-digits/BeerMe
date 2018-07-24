@@ -7,35 +7,43 @@ import Tooltip from '../Tooltip';
 class SearchForm extends Component {
 
   state = {
-    isFormValid: false
+    isFormValid: null
   }
 
   performSearch = (e) => {
     e.preventDefault();
-    console.log('Form Object');
-    console.log(this);
-
+    // Validate form fields before requesting data
     if ( this.validateForm() ) {
-      console.log('Submiting Form');
-    } else {
-      console.log('Cant submit form, because is not valid');
+      this.props.searchRandomBeer();
     }
 
   }
 
   validateForm = () => {
     const currSearchQuery = this.props.state.searchQuery;
-    console.log(currSearchQuery);
+
     // If both query elements beer styles and SRM are empty, do not validateForm
-    return ( currSearchQuery.beerStyleID !== '' &&  currSearchQuery.srmColorID !== '' ? true : false );
+    let isFormValid = currSearchQuery.beerStyleID !== '' &&  currSearchQuery.srmColorID !== '' ? true : false;
+
+    this.setState({
+      isFormValid: isFormValid
+    });
+
+    return isFormValid;
   }
 
   render() {
+
+    let Warning = '';
+    if ( this.state.isFormValid === false ) Warning = <span className="warning">Please fill in all of the form fields</span>;
+
     return (
       <form
-        onSubmit= { this.performSearch } >
+        onSubmit= { this.performSearch } onChange={ this.validateForm }>
 
-        <StyleSelect state={ this.props.state } updateSearchQuery={ this.props.updateSearchQuery} />
+        <StyleSelect state={ this.props.state }
+                     updateSearchQuery={ this.props.updateSearchQuery}
+                      />
 
         <div className="sliders">
           <div className="slider">
@@ -59,6 +67,9 @@ class SearchForm extends Component {
             </label>
           </div>
         </div>
+
+        { Warning }
+
         <button type="submit" className="styles">search</button>
       </form>
     );
