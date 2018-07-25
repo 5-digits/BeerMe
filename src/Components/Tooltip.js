@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import tooltipData from '../data/tooltipData';
+
 class Tooltip extends Component {
 
   state = {
@@ -29,15 +31,17 @@ class Tooltip extends Component {
   }
 
   render() {
+    let tooltipInfo = tooltipData[ this.props.data.toLowerCase() ];
+
     return (
       <div className="question-help" onFocus={ this.toggleView }  onBlur={ this.toggleView } tabIndex="0">
         <i className="fa fa-question-circle"></i>
         <span className="tooltip" style={ this.getElementStyles() } >
           <h3 className="header">
-            { this.props.header }
+            { tooltipInfo.header }
           </h3>
           <p className="description">
-            { this.props.description }
+            { tooltipInfo.description }
           </p>
         </span>
       </div>

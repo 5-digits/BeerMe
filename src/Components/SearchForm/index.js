@@ -41,9 +41,7 @@ class SearchForm extends Component {
       <form
         onSubmit= { this.performSearch } onChange={ this.validateForm }>
 
-        <StyleSelect state={ this.props.state }
-                     updateSearchQuery={ this.props.updateSearchQuery}
-                      />
+        <StyleSelect state={ this.props.state } updateSearchQuery={ this.props.updateSearchQuery} />
 
         <div className="sliders">
           <div className="slider">
@@ -60,10 +58,7 @@ class SearchForm extends Component {
             </div>
             <label>
               <span>Color (SRM)</span>
-              <Tooltip
-                header={ "Standard Reference Method " }
-                description={ "Standard Reference Method (SRM) is used to measure a beer's color. It goes from 1 to 40+, with 1 being the lightest and 40+ being almost black in color." }
-                />
+              <Tooltip data={ "SRM" } />
             </label>
           </div>
         </div>
