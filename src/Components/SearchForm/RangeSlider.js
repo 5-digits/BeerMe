@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 
@@ -42,6 +44,11 @@ class RangeSlider extends Component {
      />
     );
   }
+}
+
+RangeSlider.propTypes = {
+  state: PropTypes.object.isRequired,
+  updateSearchQuery: PropTypes.func.isRequired
 }
 
 export default RangeSlider;

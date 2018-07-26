@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import tooltipData from '../data/tooltipData';
 
@@ -49,6 +50,10 @@ class Tooltip extends Component {
   }
 
 }
+
+Tooltip.propTypes = {
+  data: PropTypes.string.isRequired,
+};
 
 
 export default Tooltip;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import StyleSelect from "./StyleSelect";
 import RangeSlider from "./RangeSlider";
@@ -6,8 +7,12 @@ import Tooltip from '../Tooltip';
 
 class SearchForm extends Component {
 
-  state = {
-    isFormValid: null
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isFormValid: null
+    }
   }
 
   performSearch = (e) => {
@@ -34,12 +39,10 @@ class SearchForm extends Component {
 
   render() {
 
-    let Warning = '';
-    if ( this.state.isFormValid === false ) Warning = <span className="warning">Please fill in all of the form fields</span>;
+    let Warning = this.state.isFormValid === false ? <span className="warning">Please fill in all of the form fields</span> : '';
 
     return (
-      <form
-        onSubmit= { this.performSearch } onChange={ this.validateForm }>
+      <form onSubmit= { this.performSearch }  >
 
         <StyleSelect state={ this.props.state } updateSearchQuery={ this.props.updateSearchQuery} />
 
@@ -50,7 +53,7 @@ class SearchForm extends Component {
               <RangeSlider
                 min={1}
                 max={40}
-                tooltip={true}
+                tooltip={ true }
                 state={ this.props.state }
                 updateSearchQuery={ this.props.updateSearchQuery}
                 />
@@ -70,5 +73,11 @@ class SearchForm extends Component {
     );
   }
 }
+
+SearchForm.propTypes = {
+  state : PropTypes.object.isRequired,
+  updateSearchQuery : PropTypes.func.isRequired,
+  searchRandomBeer : PropTypes.func.isRequired
+};
 
 export default SearchForm;

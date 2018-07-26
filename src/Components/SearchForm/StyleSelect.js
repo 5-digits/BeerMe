@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -37,6 +38,11 @@ class StyleSelect extends Component {
       />
     );
   }
+}
+
+StyleSelect.propTypes = {
+  state : PropTypes.object.isRequired,
+  updateSearchQuery : PropTypes.func.isRequired
 }
 
 export default StyleSelect;

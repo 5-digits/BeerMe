@@ -65,7 +65,8 @@ class App extends Component {
                <Search { ...props }
                  state={ this.state }
                  updateSearchQuery={ this.updateSearchQuery }
-                 updateSearchResults={ this.updateSearchResults } />
+                 updateSearchResults={ this.updateSearchResults }
+                 />
              }
           />
 
@@ -73,7 +74,8 @@ class App extends Component {
             render= { (props) =>
               <Results { ...props }
                 state= { this.state }
-                appInitiator= { this.initiateAppStateAt } />
+                appInitiator= { this.initiateAppStateAt }
+                />
             }
           />
         </div>
