@@ -522,4 +522,13 @@ header {
           #results-section #results .left-panel .additional-content .info-box.brewery .icon img {
             width: calc(100% - 20px); }
 
+.brewery {
+  display: block; }
+  .brewery span, .brewery a {
+    display: block;
+    line-height: 1.5em;
+    padding-bottom: 5px; }
+  .brewery a {
+    color: #3496fa; }
+
 /*# sourceMappingURL=styles.css.map */

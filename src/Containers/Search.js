@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 
 import SearchForm from '../Components/SearchForm';
 
+import tempData from '../data/staticData';
+
 class Search extends Component {
 
   searchRandomBeer = () => {
     const apiKey = "2ac80c8189c3741bc212ff55d424eee0";
     const CORSBridge = "https://cors-anywhere.herokuapp.com";
     const breweryDB = "http://api.brewerydb.com/v2";
-    const defaultParams = "beer/random?hasLabels=Y";
+    const defaultParams = "beer/random?hasLabels=Y&withBreweries=Y";
     const searchParams = this.props.state.searchQuery;
 
     fetch( `${CORSBridge}/${breweryDB}/${defaultParams}&styleId=${searchParams.beerStyleID}&smrId=${searchParams.srmColorID}&key=${apiKey}`)
@@ -22,6 +24,10 @@ class Search extends Component {
       .catch( error => {
         console.error(error);
       });
+    // const staticResp = tempData;
+    // console.dir(tempData);
+    // this.props.updateSearchResults( staticResp.data );
+    // this.props.history.push(`beer/${staticResp.data.id}`);
   }
 
   render() {

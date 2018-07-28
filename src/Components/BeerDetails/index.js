@@ -2,23 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Category from './Category';
+import Info from './Info';
 
 class BeerDetails extends Component {
 
-  getBeerDescription = () => {
-    const description = this.props.beerDetails.description;
-    if ( description ) {
-      return (
-        <div className="description">
-          <h2>DESCRIPTION:</h2>
-          <p>{ description }</p>
-        </div>
-      );
-    }
-  }
-
   render() {
     const beerDetails = this.props.beerDetails;
+    const beerBrewery = this.props.beerDetails.breweries ? this.props.beerDetails.breweries[0] : null;
     return (
       <div id="results">
         <div className="right-panel">
@@ -44,8 +34,17 @@ class BeerDetails extends Component {
         </div>
         <div id="beerinfo" className="left-panel">
 
-          { this.getBeerDescription() }
+          <Info parent={ this.props.beerDetails.description } header={ "DESCRIPTION:"} text={ this.props.beerDetails.description } />
+          <Info parent={ this.props.beerDetails.foodPairings } header={ "FOOD PAIRING:"} text={ `Pairs well with ${ this.props.beerDetails.description }` } />
+          <Info parent={ beerBrewery } header={ "ABOUT BREWERER:"} >
 
+            <div className="brewery">
+              <span> { beerBrewery.name }</span>
+              <a target="_blank" href={ beerBrewery.website }>{ beerBrewery.website }</a>
+              <span>{ `Established in ${ beerBrewery.established }`}</span>
+            </div>
+
+          </Info>
         </div>
 
       </div>
