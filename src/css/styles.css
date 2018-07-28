@@ -25,10 +25,17 @@
     transform: translateY(3px); }
   100% {
     transform: translateY(0); } }
+@keyframes notice__slide-up {
+  0% {
+    bottom: -100px; }
+  50% {
+    bottom: 5px; }
+  100% {
+    bottom: 0px; } }
 /* Common */
 html {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   color: #423e37; }
   html a {
     color: #444; }
@@ -41,7 +48,7 @@ body {
   display: flex;
   width: 100%;
   margin: 0px;
-  height: 100vh; }
+  min-height: 100vh; }
 
 .fill-beer .main-container {
   overflow: hidden; }
@@ -62,19 +69,54 @@ p {
 a {
   color: #3496fa; }
 
-/********************
-  WIDGETS
-
-********************/
-.question-help {
-  display: inline;
-  margin-left: 5px; }
-  .question-help i {
-    color: #3496fa;
-    font-size: 1.2em;
+#device-landscape-mode {
+  display: none;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  font-size: 2em;
+  letter-spacing: .5px;
+  color: #aaa;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.4); }
+  #device-landscape-mode .graphic {
+    display: block;
+    background-image: url("../images/phone-rotate.png");
+    background-image: url("../images/phone-rotate.gif");
+    background-size: cover;
+    width: 200px;
+    height: 200px;
     opacity: .7; }
-    .question-help i:hover {
-      opacity: 1; }
+
+@media screen and (orientation: landscape) and (max-device-width: 980px) {
+  #root {
+    visibility: hidden;
+    position: absolute; }
+
+  #device-landscape-mode {
+    display: block !important;
+    display: flex !important; } }
+/*************
+  Notices
+**************/
+.notice {
+  width: 100%;
+  text-align: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1em;
+  letter-spacing: .5px;
+  bottom: -100px;
+  animation: .5s notice__slide-up forwards; }
+  .notice.error {
+    background-color: #ca5b4d; }
 
 /* Header */
 header {
@@ -100,28 +142,47 @@ header {
   top: 100vh;
   animation: 2s 1s slide-up forwards; }
 
+.question-help {
+  display: inline;
+  margin-left: 5px;
+  position: relative; }
+  .question-help i {
+    color: #3496fa;
+    font-size: 1.2em;
+    opacity: .7; }
+    .question-help i:hover {
+      opacity: 1; }
+
 /* Tooltip */
 .tooltip {
   background-color: white;
-  color: #444;
+  color: #333;
+  letter-spacing: .5px;
   display: none;
   position: absolute;
   width: 320px;
+  left: calc(-210px + 50%);
   border-radius: 5px;
   padding: 0px;
   z-index: 101;
   box-shadow: -3px 5px 10px rgba(0, 0, 0, 0.4); }
+  .tooltip[data-visible="true"] {
+    display: block;
+    bottom: 2em; }
   .tooltip .header {
     line-height: 40px;
+    font-size: 1em;
+    margin: 0px;
     background-color: #c9e3fe;
     border-radius: 5px 5px 0px 0px;
     font-weight: bold;
     text-transform: uppercase; }
   .tooltip .description {
-    padding: 10px;
+    padding: 15px 10px;
+    margin: 0px;
     font-weight: lighter;
     font-size: 1em; }
-  .tooltip:before {
+  .tooltip:after {
     border-width: 11px;
     border-style: solid;
     border-color: transparent;
@@ -130,7 +191,7 @@ header {
     margin: auto;
     width: 0px;
     position: absolute;
-    left: 0;
+    left: 100px;
     right: 0;
     border-top-color: white;
     border-bottom-width: 0;
@@ -148,25 +209,29 @@ header {
   z-index: -1;
   animation: 1s beer-pour forwards; }
 
+.fill-beer #search-section {
+  height: 0px;
+  animation: 2s 1s beer-pour forwards; }
+  .fill-beer #search-section #search {
+    opacity: 0;
+    animation: .5s 3s fade-in forwards; }
+
 #search-section {
   background-color: #ffc822;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 0px;
   width: 100%;
+  height: 100vh;
   margin: 0px;
-  align-self: flex-end;
-  animation: 2s 1s beer-pour forwards; }
+  align-self: flex-end; }
   #search-section #search {
     width: 90%;
     margin-right: 5%;
     margin-left: 5%;
     display: flex;
-    flex-direction: column;
-    opacity: 0;
-    animation: .5s 3s fade-in forwards; }
+    flex-direction: column; }
     #search-section #search .main-header h1 {
       text-transform: uppercase;
       text-align: center;
@@ -175,16 +240,25 @@ header {
       display: flex;
       flex-direction: column;
       font-weight: bold; }
-      #search-section #search form .selectize-control {
-        margin-bottom: 20px; }
-        #search-section #search form .selectize-control .selectize-input {
-          line-height: 40px;
-          box-shadow: -1px 2px 10px rgba(0, 0, 0, 0.2); }
-        #search-section #search form .selectize-control .selectize-dropdown,
-        #search-section #search form .selectize-control .selectize-input,
-        #search-section #search form .selectize-control .selectize-input input {
+      #search-section #search form .Select .Select-control {
+        height: 40px;
+        box-shadow: -1px 2px 10px rgba(0, 0, 0, 0.2); }
+        #search-section #search form .Select .Select-control .Select-placeholder,
+        #search-section #search form .Select .Select-control .Select-value {
+          line-height: 40px; }
+        #search-section #search form .Select .Select-control .Select-input input {
+          padding-top: 0px; }
+        #search-section #search form .Select .Select-control .Select-placeholder,
+        #search-section #search form .Select .Select-control .Select-input,
+        #search-section #search form .Select .Select-control .Select-input input,
+        #search-section #search form .Select .Select-control .Select-value {
           text-transform: uppercase;
-          font-size: 1em; }
+          font-size: 1em;
+          height: 40px; }
+        #search-section #search form .Select .Select-control .Select-clear-zone {
+          display: none; }
+      #search-section #search form .Select .Select-menu-outer .Select-menu .Select-option {
+        text-transform: uppercase; }
       #search-section #search form label {
         text-align: center;
         display: block;
@@ -206,15 +280,20 @@ header {
             margin-right: auto; }
           #search-section #search form .sliders .slider .slider-container .rangeslider {
             width: 75%;
-            margin-left: 5px;
-            margin-right: 5px;
+            margin: 0px 10px;
             height: 15px;
             box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.4); }
             #search-section #search form .sliders .slider .slider-container .rangeslider .rangeslider__handle {
               width: 30px;
               height: 30px;
-              top: -7px;
               box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.3); }
+              #search-section #search form .sliders .slider .slider-container .rangeslider .rangeslider__handle::after {
+                width: 15px;
+                height: 15px;
+                top: 7px;
+                left: 7px; }
+            #search-section #search form .sliders .slider .slider-container .rangeslider.rangeslider-horizontal .rangeslider__fill {
+              background-color: transparent; }
           #search-section #search form .sliders .slider .slider-container#srm .rangeslider {
             background: -webkit-linear-gradient(left, #ffe699 0, #962d00 47%, #36080a 100%);
             background: linear-gradient(to right, #ffe699 0, #962d00 47%, #36080a 100%); }
@@ -327,13 +406,13 @@ header {
       display: flex;
       justify-content: center;
       flex-direction: column;
-      text-align: center; }
+      text-align: center;
+      position: fixed; }
       #results-section #results .right-panel .container {
-        margin-bottom: 50px; }
+        margin-top: 50px; }
         #results-section #results .right-panel .container .beer-label {
           width: 200px;
           height: 200px;
-          border-radius: 50%;
           margin: 50px auto 20px;
           box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.2); }
         #results-section #results .right-panel .container .beer-name {
@@ -350,15 +429,15 @@ header {
             #results-section #results .right-panel .container .beer-info .label .data {
               padding-left: 5px; }
         #results-section #results .right-panel .container .see-more {
-          position: absolute;
-          bottom: 10px;
-          left: 0px;
+          position: relative;
+          display: block;
           width: 100%;
           margin-top: 50px;
           font-size: 1.2em;
           color: #fdfdfa;
           text-transform: uppercase;
-          text-decoration: none; }
+          text-decoration: none;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); }
           #results-section #results .right-panel .container .see-more span {
             display: block;
             margin-bottom: 5px; }
@@ -374,8 +453,11 @@ header {
       flex-basis: 1;
       width: 100%;
       min-height: 100vh;
-      padding: 60px 20px 20px 20px;
-      background-color: #fdfdfa; }
+      padding: 40px 20px;
+      background-color: #fdfdfa;
+      margin-top: 100vh;
+      z-index: 9999;
+      box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.2); }
       #results-section #results .left-panel .category {
         margin-top: 95px;
         text-align: center;
@@ -384,7 +466,7 @@ header {
       #results-section #results .left-panel .description {
         font-size: 1.1em;
         text-align: justify;
-        letter-spacing: 1px; }
+        letter-spacing: .5px; }
       #results-section #results .left-panel .center-content {
         display: flex;
         flex-direction: row;

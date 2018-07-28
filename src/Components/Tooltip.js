@@ -15,29 +15,15 @@ class Tooltip extends Component {
     });
   }
 
-  getElementStyles = () => {
-    let styles = { };
-
-    if ( this.state.showTooltip ) {
-      // TODO calculate tooltip positioning
-      styles = {
-        display: "block",
-        top: 200 + "px",
-        left: 30 + "px"
-      }
-
-      return styles;
-    }
-
-  }
-
   render() {
     let tooltipInfo = tooltipData[ this.props.data.toLowerCase() ];
 
     return (
-      <div className="question-help" onFocus={ this.toggleView }  onBlur={ this.toggleView } tabIndex="0">
+      <div className="question-help" tabIndex="0"
+        onMouseEnter={ this.toggleView }
+        onMouseLeave={ this.toggleView } >
         <i className="fa fa-question-circle"></i>
-        <span className="tooltip" style={ this.getElementStyles() } >
+        <span className="tooltip" data-visible={ this.state.showTooltip } >
           <h3 className="header">
             { tooltipInfo.header }
           </h3>

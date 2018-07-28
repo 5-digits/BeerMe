@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import StyleSelect from "./StyleSelect";
 import RangeSlider from "./RangeSlider";
 import Tooltip from '../Tooltip';
+import Notice from '../Notice';
 
 class SearchForm extends Component {
 
@@ -39,7 +40,7 @@ class SearchForm extends Component {
 
   render() {
 
-    let Warning = this.state.isFormValid === false ? <span className="warning">Please fill in all of the form fields</span> : '';
+    const Warning = this.state.isFormValid === false ? <Notice type="error" text="Please fill in all of the form fields"/> : '';
 
     return (
       <form onSubmit= { this.performSearch }  >

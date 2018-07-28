@@ -4,13 +4,14 @@ html {
   font-family: 'Roboto', sans-serif;
   // display: flex;
   // flex-direction: row;
-  font-size: 16px;
+  font-size: 14px;
   color: $text-primary;
   // background-color: whitesmoke;
   // height: 100vh;
   a {
     color: #444;
   }
+
 }
 
 body {
@@ -22,7 +23,7 @@ body {
   display: flex;
   width: 100%;
   margin: 0px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .fill-beer .main-container {
@@ -48,21 +49,5 @@ a {
   color: $link-color;
 }
 
-/********************
-  WIDGETS
-
-********************/
-
-// Help ToolTip
-.question-help{
-  display: inline;
-  margin-left: 5px;
-  i {
-    color: $link-color;
-    font-size: 1.2em;
-    opacity: .7;
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
+@import '../Components/DeviceRotate';
+@import '../Components/Notice';
