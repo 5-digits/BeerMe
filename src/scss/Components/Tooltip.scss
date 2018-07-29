@@ -32,6 +32,7 @@
     bottom: 2em;
   }
   .header {
+    position: relative;
     line-height: 40px;
     font-size: 1em;
     margin: 0px;
@@ -39,6 +40,16 @@
     border-radius: 5px 5px 0px 0px;
     font-weight: bold;
     text-transform: uppercase;
+    .close {
+      margin-left: auto;
+      height: 100%;
+      display: inline-block;
+      padding: 10px 15px;
+      position: absolute;
+      box-sizing: border-box;
+      vertical-align: middle;
+      right: 0px;
+    }
   }
   .description {
     padding: 15px 10px;

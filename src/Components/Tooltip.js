@@ -9,9 +9,23 @@ class Tooltip extends Component {
     showTooltip: false
   }
 
-  toggleView = () => {
+  toggleView = ( event, state ) => {
+    event.stopPropagation();
+
+    let showTooltip;
+    switch (state) {
+      case "OPEN":
+        showTooltip = true;
+        break;
+      case "CLOSE":
+        showTooltip = false;
+        break;
+      default:
+        showTooltip = !this.state.showTooltip
+    }
+
     this.setState( {
-      showTooltip : !this.state.showTooltip
+      showTooltip : showTooltip
     });
   }
 
@@ -20,12 +34,13 @@ class Tooltip extends Component {
 
     return (
       <div className="question-help" tabIndex="0"
-        onMouseEnter={ this.toggleView }
-        onMouseLeave={ this.toggleView } >
+        onClick={ (e) => { this.toggleView(e, "OPEN"); } }
+         >
         <i className="fa fa-question-circle"></i>
         <span className="tooltip" data-visible={ this.state.showTooltip } >
           <h3 className="header">
             { tooltipInfo.header }
+            <i className="fa fa-times close" aria-hidden="true" onClick={ (e) => { this.toggleView(e, "CLOSE"); } }></i>
           </h3>
           <p className="description">
             { tooltipInfo.description }
