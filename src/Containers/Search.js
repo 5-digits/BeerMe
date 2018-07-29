@@ -19,7 +19,7 @@ class Search extends Component {
       .then( resp => {
         this.props.updateSearchResults( resp.data );
         //redirect to results page /beer/:beerID
-        this.props.history.push(`beer/${resp.data.id}`);
+        this.props.history.push(`/beer/${resp.data.id}`);
       })
       .catch( error => {
         console.error(error);

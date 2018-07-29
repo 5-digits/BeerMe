@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 
 //Containers
 import Search from './Containers/Search';
@@ -53,9 +53,9 @@ class App extends Component {
   render() {
     const isAppInitiated = this.state.isAppInitiated;
     let pourAnimation = !isAppInitiated ? <div id="liquid"></div> : '';
-
+    console.log(process.env.PUBLIC_URL);
     return (
-      <BrowserRouter >
+      <HashRouter basename={process.env.PUBLIC_URL }>
         <div className={ !isAppInitiated ? "main-container fill-beer" : "main-container" }>
           { pourAnimation }
           <Header />
@@ -70,7 +70,7 @@ class App extends Component {
              }
           />
 
-          <Route path="/beer/:id"
+        <Route path="/beer/:id"
             render= { (props) =>
               <Results { ...props }
                 state= { this.state }
@@ -79,7 +79,7 @@ class App extends Component {
             }
           />
         </div>
-      </BrowserRouter>
+      </HashRouter>
 
     );
   }

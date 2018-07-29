@@ -253,7 +253,7 @@ header {
         #search-section #search form .Select .Select-control .Select-input input,
         #search-section #search form .Select .Select-control .Select-value {
           text-transform: uppercase;
-          font-size: 1em;
+          font-size: 18px;
           height: 40px; }
         #search-section #search form .Select .Select-control .Select-clear-zone {
           display: none; }
