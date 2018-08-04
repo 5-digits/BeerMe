@@ -53,7 +53,6 @@ class App extends Component {
   render() {
     const isAppInitiated = this.state.isAppInitiated;
     let pourAnimation = !isAppInitiated ? <div id="liquid"></div> : '';
-    console.log(process.env.PUBLIC_URL);
     return (
       <HashRouter basename={process.env.PUBLIC_URL }>
         <div className={ !isAppInitiated ? "main-container fill-beer" : "main-container" }>

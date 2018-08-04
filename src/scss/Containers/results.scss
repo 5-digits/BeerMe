@@ -16,7 +16,7 @@
     width: 100%;
     .right-panel {
       width: 100%;
-      height: 100vh;
+      min-height: 100vh;
       align-self: baseline;
       display: flex;
       justify-content: center;
@@ -27,7 +27,7 @@
         .beer-label {
           width: 200px;
           height: 200px;
-          margin: 50px auto 20px;
+          // margin: 50px auto 20px;
           box-shadow: -2px 5px 10px rgba(0, 0, 0, .2);
         }
 
@@ -77,6 +77,7 @@
               padding-left: 5px;
             }
           }
+
         }
         .see-more {
           position: relative;
@@ -231,12 +232,53 @@
 
 .brewery {
   display: block;
+
+  .summary {
+    display: flex;
+
+    img {
+      height: 60px;
+      width: 60px;
+      margin-right: 10px;
+    }
+  }
+
   span, a {
     display: block;
-    line-height: 1.5em;
+    // line-height: 1.5em;
     padding-bottom: 5px;
   }
   a {
     color: $link-color;
+  }
+
+  .locations-container {
+    position: relative;
+    margin: 20px auto;
+
+    .map-container {
+      margin: 5px 0px;
+      & > div > div {
+        position: relative!important;
+      }
+
+    }
+
+    .location {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0px;
+      }
+      h4 {
+        margin: 0px 0px 5px 0px;
+        font-size: 1.5em;
+      }
+      span {
+        line-height: 1em;
+      }
+    }
   }
 }

@@ -412,7 +412,7 @@ header {
     width: 100%; }
     #results-section #results .right-panel {
       width: 100%;
-      height: 100vh;
+      min-height: 100vh;
       align-self: baseline;
       display: flex;
       justify-content: center;
@@ -422,7 +422,6 @@ header {
       #results-section #results .right-panel .container .beer-label {
         width: 200px;
         height: 200px;
-        margin: 50px auto 20px;
         box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.2); }
       #results-section #results .right-panel .container .beer-info {
         background-color: #fdfdfa;
@@ -549,11 +548,35 @@ header {
 
 .brewery {
   display: block; }
+  .brewery .summary {
+    display: flex; }
+    .brewery .summary img {
+      height: 60px;
+      width: 60px;
+      margin-right: 10px; }
   .brewery span, .brewery a {
     display: block;
-    line-height: 1.5em;
     padding-bottom: 5px; }
   .brewery a {
     color: #3496fa; }
+  .brewery .locations-container {
+    position: relative;
+    margin: 20px auto; }
+    .brewery .locations-container .map-container {
+      margin: 5px 0px; }
+      .brewery .locations-container .map-container > div > div {
+        position: relative !important; }
+    .brewery .locations-container .location {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc; }
+      .brewery .locations-container .location:last-child {
+        border-bottom: none;
+        margin-bottom: 0px; }
+      .brewery .locations-container .location h4 {
+        margin: 0px 0px 5px 0px;
+        font-size: 1.5em; }
+      .brewery .locations-container .location span {
+        line-height: 1em; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://dgiraldo313.github.io/BeerMe",
   "dependencies": {
+    "google-maps-react": "^2.0.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-rangeslider": "^2.2.0",
