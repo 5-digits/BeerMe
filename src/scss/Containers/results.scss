@@ -24,23 +24,52 @@
       text-align: center;
       position: fixed;
       .container {
-        margin-top: 50px;
         .beer-label {
           width: 200px;
           height: 200px;
           margin: 50px auto 20px;
           box-shadow: -2px 5px 10px rgba(0, 0, 0, .2);
         }
-        .beer-name {
-          font-size: 1.5em;
-          font-weight: bold;
-        }
+
         .beer-info {
-          font-size: 1.2em;
-          .label {
-            margin: 10px 0px;
+          background-color: $background-secondary;
+          padding: 2px;
+          margin: 20px;
+          border-radius: 5px;
+          box-shadow: 2px 5px 10px rgba(0,0,0,.3);
+
+          a {
+            text-decoration: none;
+            font-weight: normal;
+
+          }
+          i {
+            padding-left: 5px;
+          }
+          .item {
+            margin: 0px;
+            padding: 5px;
+            box-sizing: border-box;
             display: block;
+            font-size: 1.2em;
+          }
+          .right {
+            padding-left: 10px;
+          }
+          .left {
+            padding-right: 10px;
+          }
+          .inline {
+            display: inline-block;
+          }
+          .beer-name {
+            font-size: 1.5em;
             font-weight: bold;
+          }
+          .label {
+            // margin: 10px 0px;
+            // display: block;
+            // font-weight: bold;
             .name {
               font-size: 1.5em;
             }
@@ -53,7 +82,6 @@
           position: relative;
           display: block;
           width: 100%;
-          margin-top: 50px;
           font-size: 1.2em;
           color: #fdfdfa;
           text-transform: uppercase;

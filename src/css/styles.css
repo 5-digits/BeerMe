@@ -172,8 +172,9 @@ header {
   .tooltip .header {
     position: relative;
     line-height: 40px;
-    font-size: 1em;
+    font-size: .8em;
     margin: 0px;
+    padding: 0px 20px;
     background-color: #c9e3fe;
     border-radius: 5px 5px 0px 0px;
     font-weight: bold;
@@ -418,43 +419,57 @@ header {
       flex-direction: column;
       text-align: center;
       position: fixed; }
-      #results-section #results .right-panel .container {
-        margin-top: 50px; }
-        #results-section #results .right-panel .container .beer-label {
-          width: 200px;
-          height: 200px;
-          margin: 50px auto 20px;
-          box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.2); }
-        #results-section #results .right-panel .container .beer-name {
+      #results-section #results .right-panel .container .beer-label {
+        width: 200px;
+        height: 200px;
+        margin: 50px auto 20px;
+        box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.2); }
+      #results-section #results .right-panel .container .beer-info {
+        background-color: #fdfdfa;
+        padding: 2px;
+        margin: 20px;
+        border-radius: 5px;
+        box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3); }
+        #results-section #results .right-panel .container .beer-info a {
+          text-decoration: none;
+          font-weight: normal; }
+        #results-section #results .right-panel .container .beer-info i {
+          padding-left: 5px; }
+        #results-section #results .right-panel .container .beer-info .item {
+          margin: 0px;
+          padding: 5px;
+          box-sizing: border-box;
+          display: block;
+          font-size: 1.2em; }
+        #results-section #results .right-panel .container .beer-info .right {
+          padding-left: 10px; }
+        #results-section #results .right-panel .container .beer-info .left {
+          padding-right: 10px; }
+        #results-section #results .right-panel .container .beer-info .inline {
+          display: inline-block; }
+        #results-section #results .right-panel .container .beer-info .beer-name {
           font-size: 1.5em;
           font-weight: bold; }
-        #results-section #results .right-panel .container .beer-info {
-          font-size: 1.2em; }
-          #results-section #results .right-panel .container .beer-info .label {
-            margin: 10px 0px;
-            display: block;
-            font-weight: bold; }
-            #results-section #results .right-panel .container .beer-info .label .name {
-              font-size: 1.5em; }
-            #results-section #results .right-panel .container .beer-info .label .data {
-              padding-left: 5px; }
-        #results-section #results .right-panel .container .see-more {
-          position: relative;
+        #results-section #results .right-panel .container .beer-info .label .name {
+          font-size: 1.5em; }
+        #results-section #results .right-panel .container .beer-info .label .data {
+          padding-left: 5px; }
+      #results-section #results .right-panel .container .see-more {
+        position: relative;
+        display: block;
+        width: 100%;
+        font-size: 1.2em;
+        color: #fdfdfa;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); }
+        #results-section #results .right-panel .container .see-more span {
           display: block;
-          width: 100%;
-          margin-top: 50px;
-          font-size: 1.2em;
-          color: #fdfdfa;
-          text-transform: uppercase;
-          text-decoration: none;
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); }
-          #results-section #results .right-panel .container .see-more span {
-            display: block;
-            margin-bottom: 5px; }
-          #results-section #results .right-panel .container .see-more i {
-            font-size: 2em;
-            line-height: .5em;
-            animation: 1s bounce infinite; }
+          margin-bottom: 5px; }
+        #results-section #results .right-panel .container .see-more i {
+          font-size: 2em;
+          line-height: .5em;
+          animation: 1s bounce infinite; }
     #results-section #results .left-panel {
       display: flex;
       box-sizing: border-box;
