@@ -15,8 +15,8 @@ const Category = (props) => {
 }
 
 Category.propTypes = {
-  category: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
+  category: PropTypes.string,
+  value: PropTypes.string
 };
 
 export default Category;
