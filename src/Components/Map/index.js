@@ -11,7 +11,6 @@ export class MapContainer extends Component {
       height: '300px'
     }
 
-    console.log(this.props.coordinates);
     return (
       <Map style={ style }
            google={this.props.google}

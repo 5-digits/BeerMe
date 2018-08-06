@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 
 import SearchForm from '../Components/SearchForm';
 
-import tempData from '../data/staticData';
+// import tempData from '../data/staticData';
 
 class Search extends Component {
 
+  componentDidMount() {
+    if ( this.props.state.isAppInitiated ) this.props.resetSearchQuery();
+  }
   searchRandomBeer = () => {
     const apiKey = "2ac80c8189c3741bc212ff55d424eee0";
     const CORSBridge = "https://cors-anywhere.herokuapp.com";
@@ -54,6 +57,7 @@ Search.propTypes = {
   state: PropTypes.object.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
   updateSearchResults: PropTypes.func.isRequired,
+  resetSearchQuery: PropTypes.func.isRequired
 };
 
 export default Search;

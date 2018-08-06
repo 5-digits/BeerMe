@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, HashRouter } from 'react-router-dom';
+import { Route, HashRouter, Link } from 'react-router-dom';
 
 //Containers
 import Search from './Containers/Search';
@@ -50,6 +50,15 @@ class App extends Component {
     });
   }
 
+  resetSearchQuery = () => {
+    const reset = {
+      beerStyleID : "",
+      srmColorID : "20"
+    }
+
+    this.updateSearchQuery( reset );
+  }
+
   render() {
     const isAppInitiated = this.state.isAppInitiated;
     let pourAnimation = !isAppInitiated ? <div id="liquid"></div> : '';
@@ -57,7 +66,10 @@ class App extends Component {
       <HashRouter basename={process.env.PUBLIC_URL }>
         <div className={ !isAppInitiated ? "main-container fill-beer" : "main-container" }>
           { pourAnimation }
-          <Header />
+
+          <Link to="/">
+            <Header />
+          </Link>
 
           <Route exact path="/"
             render= { (props) =>
@@ -65,6 +77,7 @@ class App extends Component {
                  state={ this.state }
                  updateSearchQuery={ this.updateSearchQuery }
                  updateSearchResults={ this.updateSearchResults }
+                 resetSearchQuery={ this.resetSearchQuery }
                  />
              }
           />

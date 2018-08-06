@@ -1,6 +1,7 @@
 /* Search */
 
 #liquid {
+  background: linear-gradient(to bottom, #bc7012 0%, #efd002 100%);
   background-color: $background-primary;
   position: absolute;
   border-radius: 0px 0px 50px 50px;
@@ -25,6 +26,7 @@
 }
 
 #search-section {
+  background: linear-gradient(to bottom, #bc7012 0%, #efd002 100%);
   background-color: $background-primary;
   display: flex;
   flex-direction: column;
@@ -45,9 +47,11 @@
     }
     .main-header {
       h1 {
-        text-transform: uppercase;
+        text-transform: capitalize;
         text-align: center;
         font-size: 2.5em;
+        color: #fdfdfa;
+        text-shadow: 1px 1px 3px rgba(0,0,0,.7);
       }
     }
     form {

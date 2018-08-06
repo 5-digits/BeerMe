@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 import Category from './Category';
 import Info from './Info';
 import Locations from './Locations';
 
+
 class BeerDetails extends Component {
 
+  scrollToLearnMore = () => {
+    // scroll down to learn more section.
+    const learnMore = ReactDOM.findDOMNode(this.refs.beerinfo);
+    if (learnMore) window.scrollTo(0, learnMore.offsetTop);
+  }
   render() {
     const beerDetails = this.props.beerDetails;
     const beerBrewery = this.props.beerDetails.breweries ? this.props.beerDetails.breweries[0] : null;
-    console.log(beerBrewery);
+
     return (
       <div id="results">
         <div className="right-panel">
@@ -35,21 +42,21 @@ class BeerDetails extends Component {
               </span>
               <span className="item">{ beerDetails.style.shortName } </span>
             </div>
-            <a href="#beerinfo" onClick={ (e) => {e.preventDefault();}} className="see-more">
+            <a onClick={ this.scrollToLearnMore } className="see-more">
               <span>Read More</span>
               <i className="fa fa-caret-down" aria-hidden="true"></i>
             </a>
           </div>
         </div>
-        <div id="beerinfo" className="left-panel">
+        <div ref="beerinfo" className="left-panel">
 
           <Info parent={ this.props.beerDetails.description } header={ "DESCRIPTION:"} text={ this.props.beerDetails.description } />
-          <Info parent={ beerBrewery } header={ "ABOUT BREWERER:"} >
 
+          <Info parent={ beerBrewery } header={ "ABOUT BREWERER:"} >
             <div className="brewery">
               <div className="summary">
                 <div>
-                  <img src={ beerBrewery.images.icon } alt="Brewery Logo" />
+                  <img src={ beerBrewery.images ? beerBrewery.images.icon : require('../../images/beer-placeholder.png') } alt="Brewery Logo" />
                 </div>
                 <div>
                   <span> { beerBrewery.name }</span>

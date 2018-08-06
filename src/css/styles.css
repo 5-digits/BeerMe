@@ -210,7 +210,8 @@ header {
 
 /* Search */
 #liquid {
-  background-color: #ffc822;
+  background: linear-gradient(to bottom, #bc7012 0%, #efd002 100%);
+  background-color: #f7a900;
   position: absolute;
   border-radius: 0px 0px 50px 50px;
   top: 0;
@@ -228,7 +229,8 @@ header {
     animation: .5s 3s fade-in forwards; }
 
 #search-section {
-  background-color: #ffc822;
+  background: linear-gradient(to bottom, #bc7012 0%, #efd002 100%);
+  background-color: #f7a900;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -244,9 +246,11 @@ header {
     display: flex;
     flex-direction: column; }
     #search-section #search .main-header h1 {
-      text-transform: uppercase;
+      text-transform: capitalize;
       text-align: center;
-      font-size: 2.5em; }
+      font-size: 2.5em;
+      color: #fdfdfa;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
     #search-section #search form {
       display: flex;
       flex-direction: column;
@@ -398,7 +402,6 @@ header {
 
 /* Results */
 #results-section {
-  background-color: #ffc822;
   width: 100%;
   margin: 0px; }
   #results-section .title {
@@ -411,6 +414,8 @@ header {
     flex-direction: column;
     width: 100%; }
     #results-section #results .right-panel {
+      background: linear-gradient(to bottom, #bc7012 0%, #efd002 100%);
+      background-color: #f7a900;
       width: 100%;
       min-height: 100vh;
       align-self: baseline;
@@ -461,7 +466,7 @@ header {
         color: #fdfdfa;
         text-transform: uppercase;
         text-decoration: none;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); }
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
         #results-section #results .right-panel .container .see-more span {
           display: block;
           margin-bottom: 5px; }
@@ -490,7 +495,10 @@ header {
       #results-section #results .left-panel .description {
         font-size: 1.1em;
         text-align: justify;
-        letter-spacing: .5px; }
+        letter-spacing: .5px;
+        margin-bottom: 20px; }
+        #results-section #results .left-panel .description:last-child {
+          margin-bottom: 0px; }
       #results-section #results .left-panel .center-content {
         display: flex;
         flex-direction: row;
@@ -552,10 +560,11 @@ header {
     display: flex; }
     .brewery .summary img {
       height: 60px;
-      width: 60px;
+      background-size: cover;
       margin-right: 10px; }
   .brewery span, .brewery a {
     display: block;
+    text-align: left;
     padding-bottom: 5px; }
   .brewery a {
     color: #3496fa; }
