@@ -6,21 +6,16 @@ import BeerDetails from '../Components/BeerDetails';
 class Results extends Component {
 
   state = {
-    resultsExist: true
+    resultsExist: true,
   }
 
   componentWillMount() {
     // When app is loaded directly to results route, make sure to disable loading animation
     if ( !this.props.state.isAppInitiated ) this.props.appInitiator(0);
     // Verify that results exist before loading app
-    this.checkThatResultsExist();
-
-  }
-
-  componentDidMount() {
-    // When results are empty, redirect to search page
-      // TODO: add logic to get beer by id passed in URL
-    if ( !this.state.resultsExist ) this.redirectToSearch();
+    if ( !this.checkThatResultsExist() ) {
+      this.searchBeerById();
+    }
   }
 
   //Verify that results do exist in app state, otherwise update local state
@@ -30,11 +25,24 @@ class Results extends Component {
       this.setState({
         resultsExist: false
       });
+      return false;
     }
+    return true;
   }
 
   redirectToSearch = () => {
     this.props.history.push("/");
+  }
+
+  searchBeerById = () => {
+    const beerID = this.props.match.params.id;
+    const searchParams = `beer/${beerID}?&withBreweries=Y`;
+    this.props.searchFromBreweryDB(searchParams)
+      .then( () => {
+        this.setState({
+          resultsExist: true
+        });
+      });
   }
 
   render() {
@@ -54,7 +62,8 @@ class Results extends Component {
 
 Results.propTypes = {
   state: PropTypes.object.isRequired,
-  appInitiator: PropTypes.func.isRequired
+  appInitiator: PropTypes.func.isRequired,
+  searchFromBreweryDB: PropTypes.func.isRequired
 };
 
 export default Results;

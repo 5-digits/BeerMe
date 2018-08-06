@@ -10,27 +10,17 @@ class Search extends Component {
   componentDidMount() {
     if ( this.props.state.isAppInitiated ) this.props.resetSearchQuery();
   }
-  searchRandomBeer = () => {
-    const apiKey = "2ac80c8189c3741bc212ff55d424eee0";
-    const CORSBridge = "https://cors-anywhere.herokuapp.com";
-    const breweryDB = "http://api.brewerydb.com/v2";
-    const defaultParams = "beer/random?hasLabels=Y&withBreweries=Y";
-    const searchParams = this.props.state.searchQuery;
 
-    fetch( `${CORSBridge}/${breweryDB}/${defaultParams}&styleId=${searchParams.beerStyleID}&smrId=${searchParams.srmColorID}&key=${apiKey}`)
-      .then( blob => blob.json() )
-      .then( resp => {
-        this.props.updateSearchResults( resp.data );
+  searchRandomBeer = () => {
+    const defaultParams = "beer/random?hasLabels=Y&withBreweries=Y";
+    const searchParams = `${defaultParams}&styleId=${this.props.state.searchQuery.beerStyleID}&smrId=${this.props.state.searchQuery.srmColorID}`;
+
+    this.props.searchFromBreweryDB(searchParams)
+      .then(  (resp) => {
         //redirect to results page /beer/:beerID
-        this.props.history.push(`/beer/${resp.data.id}`);
-      })
-      .catch( error => {
-        console.error(error);
+        this.props.history.push(`/beer/${this.props.state.searchResults.id}`);
       });
-    // const staticResp = tempData;
-    // console.dir(tempData);
-    // this.props.updateSearchResults( staticResp.data );
-    // this.props.history.push(`beer/${staticResp.data.id}`);
+
   }
 
   render() {
@@ -57,7 +47,8 @@ Search.propTypes = {
   state: PropTypes.object.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
   updateSearchResults: PropTypes.func.isRequired,
-  resetSearchQuery: PropTypes.func.isRequired
+  resetSearchQuery: PropTypes.func.isRequired,
+  searchFromBreweryDB: PropTypes.func.isRequired,
 };
 
 export default Search;

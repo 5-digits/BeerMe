@@ -59,6 +59,21 @@ class App extends Component {
     this.updateSearchQuery( reset );
   }
 
+  searchFromBreweryDB = (params) => {
+    const apiKey = "2ac80c8189c3741bc212ff55d424eee0";
+    const CORSBridge = "https://cors-anywhere.herokuapp.com";
+    const breweryDB = "http://api.brewerydb.com/v2";
+
+    return fetch( `${CORSBridge}/${breweryDB}/${params}&key=${apiKey}`)
+      .then( blob => blob.json() )
+      .then( resp => {
+        this.updateSearchResults( resp.data );
+      })
+      .catch( error => {
+        console.error(error);
+      });
+  }
+
   render() {
     const isAppInitiated = this.state.isAppInitiated;
     let pourAnimation = !isAppInitiated ? <div id="liquid"></div> : '';
@@ -78,6 +93,7 @@ class App extends Component {
                  updateSearchQuery={ this.updateSearchQuery }
                  updateSearchResults={ this.updateSearchResults }
                  resetSearchQuery={ this.resetSearchQuery }
+                 searchFromBreweryDB= { this.searchFromBreweryDB }
                  />
              }
           />
@@ -87,6 +103,7 @@ class App extends Component {
               <Results { ...props }
                 state= { this.state }
                 appInitiator= { this.initiateAppStateAt }
+                searchFromBreweryDB= { this.searchFromBreweryDB }
                 />
             }
           />
