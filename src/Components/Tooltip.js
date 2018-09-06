@@ -5,42 +5,44 @@ import tooltipData from '../data/tooltipData';
 
 class Tooltip extends Component {
 
-  state = {
-    showTooltip: false
-  }
-
-  toggleView = ( event, state ) => {
-    event.stopPropagation();
-
-    let showTooltip;
-    switch (state) {
-      case "OPEN":
-        showTooltip = true;
-        break;
-      case "CLOSE":
-        showTooltip = false;
-        break;
-      default:
-        showTooltip = !this.state.showTooltip
+  constructor(props) {
+    super(props)
+    this.state = {
+      showTooltip: false
     }
 
-    this.setState( {
-      showTooltip : showTooltip
-    });
+    this.tooltip = React.createRef()
+
+    // bind functions
+    this.openTooltip = this.openTooltip.bind(this)
+    this.closeTooltip = this.closeTooltip.bind(this)
+  }
+
+  componentDidMount() {
+    this.tooltip.current.focus()
+  }
+
+  openTooltip() {
+    this.setState({
+      showTooltip: true
+    })
+  }
+
+  closeTooltip() {
+    this.setState({
+      showTooltip: false
+    })
   }
 
   render() {
     let tooltipInfo = tooltipData[ this.props.data.toLowerCase() ];
 
     return (
-      <div className="question-help" tabIndex="0"
-        onClick={ (e) => { this.toggleView(e, "OPEN"); } }
-         >
+      <div ref={ this.tooltip } className="question-help" tabIndex="0" onClick={ this.openTooltip } onBlur={ this.closeTooltip } >
         <i className="fa fa-question-circle"></i>
         <span className="tooltip" data-visible={ this.state.showTooltip } >
           <h3 className="header">
             { tooltipInfo.header }
-            <i className="fa fa-times close" aria-hidden="true" onClick={ (e) => { this.toggleView(e, "CLOSE"); } }></i>
           </h3>
           <p className="description">
             { tooltipInfo.description }

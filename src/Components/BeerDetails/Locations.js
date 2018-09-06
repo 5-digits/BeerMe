@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 
 import Location from './Location';
 
-class Locations extends Component {
-  render () {
-    const locationsList = this.props.locations;
-    const Locations = locationsList.map((location, index) => {
-      return (
-         <Location key={ index } location={ location } />
-      );
-    });
+const Locations = (props) => {
+  const locationsList = props.locations;
 
-    return (
-      <div className="locations-container">
-        { Locations }
-      </div>
-    )
-  }
+  return (
+    <div className="locations-container">
+      {
+        locationsList.map((location) => {
+          return (
+             <Location key={ location.id } location={ location } />
+          )
+        })
+      }
+    </div>
+  )
 }
 
 Locations.propTypes = {

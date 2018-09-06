@@ -14,33 +14,47 @@ class SearchForm extends Component {
     this.state = {
       isFormValid: null
     }
+
+    // bind functions
+    this.performSearch = this.performSearch.bind(this)
+    this.validateForm = this.validateForm.bind(this)
   }
 
-  performSearch = (e) => {
+
+  /*
+   * -- UPSTREAM --
+   * Function searchRandomBeer() passed in through props by Search container
+   */
+  performSearch(e) {
     e.preventDefault();
     // Validate form fields before requesting data
-    if ( this.validateForm() ) {
-      this.props.searchRandomBeer();
-    }
+    if ( this.validateForm() ) this.props.searchRandomBeer()
 
   }
 
-  validateForm = () => {
+  /*
+   * Form is trigger by child component -
+   * Needs to have both fields states populated in order to validated
+   */
+  validateForm() {
     const currSearchQuery = this.props.state.searchQuery;
-
     // If both query elements beer styles and SRM are empty, do not validateForm
-    let isFormValid = currSearchQuery.beerStyleID !== '' &&  currSearchQuery.srmColorID !== '' ? true : false;
+    const isFormValid = currSearchQuery.beerStyleID !== '' &&  currSearchQuery.srmColorID !== '' ? true : false;
 
-    this.setState({
-      isFormValid: isFormValid
+    this.setState((prevState, currState ) => {
+      //Update state when current validation has been updated from previous state
+      if ( prevState.isFormValid !== isFormValid ) {
+        return ({
+          isFormValid: isFormValid
+        })
+      }
     });
 
     return isFormValid;
   }
 
   render() {
-
-    const Warning = this.state.isFormValid === false ? <Notice type="error" text="Please fill in all of the form fields"/> : '';
+    const Warning = this.state.isFormValid === false ? <Notice type="error" text="Please fill in all of the form fields"/> : null;
 
     return (
       <form onSubmit= { this.performSearch }  >

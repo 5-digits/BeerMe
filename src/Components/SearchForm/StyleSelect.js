@@ -8,23 +8,40 @@ import beerStyles from '../../data/BeerStylesData';
 
 class StyleSelect extends Component {
 
-  state = {
-    beerStyle : ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      beerStyle : ''
+    }
+
+    // Bind functions
+    this.onSelectChange = this.onSelectChange.bind(this)
+
   }
 
-  onSelectChange = ( selection ) => {
-
-      //set local state to change display name on select dropdown
-      this.setState( {
-        beerStyle : selection
-      });
-
+  /*
+   * -- DOWNSTREAM & UPSTREAM --
+   * Keep track of local state for the select input
+   * As well as update global state upstream - Function passed in through props
+   */
+  onSelectChange(selection) {
+      // Get the value of the selection to pass to global state
       const beerStyleID = selection ? selection.value : '';
 
-      this.props.updateSearchQuery({
-        ...this.props.state.searchQuery,
-        beerStyleID : beerStyleID
-      });
+      // Only update states when value selected are different to prevent additional rendering
+      if ( selection.value !== this.state.beerStyle.value ) {
+        //set local state to change display name on select dropdown
+        this.setState( {
+          beerStyle : selection
+        })
+
+        //Update global state for the search query
+        this.props.updateSearchQuery({
+          ...this.props.state.searchQuery,
+          beerStyleID : beerStyleID
+        });
+      }
+
   }
 
   render() {

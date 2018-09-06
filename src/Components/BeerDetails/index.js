@@ -9,11 +9,27 @@ import Locations from './Locations';
 
 class BeerDetails extends Component {
 
-  scrollToLearnMore = () => {
+  constructor(props) {
+    super(props)
+
+    // Set up React ref
+    this.beerinfo = React.createRef()
+
+    // bind functions
+    this.scrollToLearnMore = this.scrollToLearnMore.bind(this)
+  }
+
+
+  /*
+   * Activate animation to scroll in learn more section
+   * TODO - Add transition for animation
+   */
+  scrollToLearnMore() {
     // scroll down to learn more section.
-    const learnMore = ReactDOM.findDOMNode(this.refs.beerinfo);
+    const learnMore = ReactDOM.findDOMNode(this.beerinfo.current);
     if (learnMore) window.scrollTo(0, learnMore.offsetTop);
   }
+
   render() {
     const beerDetails = this.props.beerDetails;
     const beerBrewery = this.props.beerDetails.breweries ? this.props.beerDetails.breweries[0] : null;
@@ -23,7 +39,7 @@ class BeerDetails extends Component {
         <div className="right-panel">
           <div className="container">
 
-            { beerDetails.labels ? <img className="beer-label" src={ beerDetails.labels.medium } alt="Beer Label"/> : '' }
+            { beerDetails.labels ? <img className="beer-label" src={ beerDetails.labels.medium } alt="Beer Label"/> : null }
 
 
             <div className="beer-info">
@@ -48,7 +64,7 @@ class BeerDetails extends Component {
             </a>
           </div>
         </div>
-        <div ref="beerinfo" className="left-panel">
+        <div ref={ this.beerinfo } className="left-panel">
 
           <Info parent={ this.props.beerDetails.description } header={ "DESCRIPTION:"} text={ this.props.beerDetails.description } />
 

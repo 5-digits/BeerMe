@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 
 const Info = (props) => {
   if ( props.parent ) {
@@ -10,9 +9,8 @@ const Info = (props) => {
         { props.children ? props.children : '' }
       </div>
     );
-  } else {
-    return '';
-  }
+  } 
+  return null;
 }
 
 export default Info;

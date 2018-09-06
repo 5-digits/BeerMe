@@ -3,15 +3,25 @@ import PropTypes from 'prop-types';
 
 import SearchForm from '../Components/SearchForm';
 
-// import tempData from '../data/staticData';
-
 class Search extends Component {
+  constructor(props) {
+    super(props)
 
-  componentDidMount() {
-    if ( this.props.state.isAppInitiated ) this.props.resetSearchQuery();
+    // bind functions
+    this.searchRandomBeer = this.searchRandomBeer.bind(this)
+
   }
 
-  searchRandomBeer = () => {
+  componentDidMount() {
+    if ( this.props.state.isAppInitiated ) this.props.resetSearchQuery()
+  }
+
+  /*
+   * -- DOWNSTREAM --
+   * Action method to select a random beer by parameters
+   * TODO Create central API
+   */
+  searchRandomBeer() {
     const defaultParams = "beer/random?hasLabels=Y&withBreweries=Y";
     const searchParams = `${defaultParams}&styleId=${this.props.state.searchQuery.beerStyleID}&smrId=${this.props.state.searchQuery.srmColorID}`;
 
@@ -24,7 +34,6 @@ class Search extends Component {
   }
 
   render() {
-
     return (
       <section id="search-section">
         <div id="search">
