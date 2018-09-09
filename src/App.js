@@ -1,12 +1,27 @@
-import React, { Component } from 'react';
-import { Route, HashRouter, Link } from 'react-router-dom';
-
-//Containers
-import Search from './Containers/Search';
-import Results from './Containers/Results';
+import React, { Component } from 'react'
+import { Route, HashRouter, Link } from 'react-router-dom'
+import Loadable from 'react-loadable'
 
 // Components
-import Header from './Components/Header';
+import Header from './Components/Header'
+import Loader from './Components/Loader'
+
+//Containers
+const Loading = ( props ) => {
+  return props.pastDelay ? <Loader /> : null
+}
+
+const Search = Loadable({
+  loader: () => import('./Containers/Search'),
+  loading: Loading,
+  delay: 0
+});
+
+const Results = Loadable({
+  loader: () => import('./Containers/Results'),
+  loading: Loading,
+  delay: 0
+});
 
 class App extends Component {
 
@@ -103,13 +118,9 @@ class App extends Component {
   }
 
   render() {
-    const isAppInitiated = this.state.isAppInitiated;
-    let pourAnimation = !isAppInitiated ? <div id="liquid"></div> : '';
     return (
-      <HashRouter basename={process.env.PUBLIC_URL }>
-        <div className={ !isAppInitiated ? "main-container fill-beer" : "main-container" }>
-          { pourAnimation }
-
+      <HashRouter basename={ process.env.PUBLIC_URL }>
+        <div className= "main-container">
           <Link to="/">
             <Header />
           </Link>

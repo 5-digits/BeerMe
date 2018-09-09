@@ -265,6 +265,17 @@
 
     .map-container {
       margin: 5px 0px;
+      margin: 5px 0px;
+      width: 100%;
+      min-height: 250px;
+      background: #ccc;
+      .loading {
+        line-height: 250px;
+        font-size: 1em;
+        color: #444;
+        animation: 1s expand infinite;
+        text-align: center;
+      }
       & > div > div {
         position: relative!important;
       }

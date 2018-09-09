@@ -19,15 +19,21 @@ body {
   margin: 0px;
 }
 
-.main-container {
+.main-container,
+.loader {
   display: flex;
   width: 100%;
   margin: 0px;
   min-height: 100vh;
 }
 
-.fill-beer .main-container {
-  overflow: hidden;
+.loader {
+  align-items: center;
+  justify-content: center;
+  h1 {
+    font-size: 2em;
+    animation: 1s expand infinite;
+  }
 }
 
 h1 {
@@ -48,6 +54,7 @@ p {
 a {
   color: $link-color;
 }
+
 
 @import '../Components/DeviceRotate';
 @import '../Components/Notice';

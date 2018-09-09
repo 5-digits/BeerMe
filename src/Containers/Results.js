@@ -59,10 +59,7 @@ class Results extends Component {
       <section id="results-section">
         { this.state.resultsExist ?
           <BeerDetails beerDetails={ this.props.state.searchResults } /> :
-          <div className="results-empty">
-            <p>Sorry, no results found!</p>
-            <i>Redirecting...</i>
-          </div>
+          null
         }
       </section>
     );
