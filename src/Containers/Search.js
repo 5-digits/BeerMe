@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import beerAPI from '../utilsAPI'
 
 import SearchForm from '../Components/SearchForm';
 
@@ -19,8 +20,9 @@ class Search extends Component {
   searchRandomBeer() {
     const beerStyleID = this.props.state.searchQuery.beerStyleID
     const srmColorID = this.props.state.searchQuery.srmColorID
-    this.props.searchRandomBeer( beerStyleID , srmColorID )
-        .then( () => {
+    beerAPI.searchRandomBeer( beerStyleID , srmColorID )
+        .then( (resp) => {
+          this.props.updateSearchResults( resp )
           //redirect to results page /beer/:beerID
           this.props.history.push(`/beer/${this.props.state.searchResults.id}`)
         })
@@ -50,7 +52,7 @@ Search.propTypes = {
   state: PropTypes.object.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
   resetSearchQuery: PropTypes.func.isRequired,
-  searchRandomBeer: PropTypes.func.isRequired,
+  updateSearchResults: PropTypes.func.isRequired, 
 };
 
 export default Search;

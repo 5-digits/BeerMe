@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import beerAPI from '../utilsAPI'
 
 import BeerDetails from '../Components/BeerDetails';
 
@@ -41,8 +42,9 @@ class Results extends Component {
   searchBeerById() {
     const beerID = this.props.match.params.id;
 
-    this.props.searchBeerById( beerID )
-      .then( () => {
+    beerAPI.searchBeerById( beerID )
+      .then( ( resp ) => {
+        this.props.updateSearchResults( resp )
         this.setState({
           resultsExist: true
         });
@@ -64,7 +66,7 @@ class Results extends Component {
 
 Results.propTypes = {
   state: PropTypes.object.isRequired,
-  searchBeerById: PropTypes.func.isRequired
+  updateSearchResults : PropTypes.func.isRequired
 };
 
 export default Results;
