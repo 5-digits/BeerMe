@@ -13,14 +13,12 @@ class Results extends Component {
 
     // Bind functions
     this.checkThatResultsExist = this.checkThatResultsExist.bind(this)
-    this.redirectToSearch = this.redirectToSearch.bind(this)
     this.searchBeerById = this.searchBeerById.bind(this)
+
   }
 
 
   componentWillMount() {
-    // When app is loaded directly to results route, make sure to disable loading animation
-    if ( !this.props.state.isAppInitiated ) this.props.appInitiator(0);
     // Verify that results exist before loading app
     if ( !this.checkThatResultsExist() )  this.searchBeerById()
   }
@@ -38,20 +36,18 @@ class Results extends Component {
     return true;
   }
 
-  redirectToSearch() {
-    this.props.history.push("/");
-  }
 
   //TODO Redirect to search page when beer is not found (404 error)
   searchBeerById() {
     const beerID = this.props.match.params.id;
-    const searchParams = `beer/${beerID}?&withBreweries=Y`;
-    this.props.searchFromBreweryDB(searchParams)
+
+    this.props.searchBeerById( beerID )
       .then( () => {
         this.setState({
           resultsExist: true
         });
       })
+
   }
 
   render() {
@@ -68,8 +64,7 @@ class Results extends Component {
 
 Results.propTypes = {
   state: PropTypes.object.isRequired,
-  appInitiator: PropTypes.func.isRequired,
-  searchFromBreweryDB: PropTypes.func.isRequired
+  searchBeerById: PropTypes.func.isRequired
 };
 
 export default Results;

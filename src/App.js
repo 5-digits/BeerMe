@@ -7,19 +7,19 @@ import Header from './Components/Header'
 import Loader from './Components/Loader'
 
 //Containers
-const Loading = ( props ) => {
-  return props.pastDelay ? <Loader /> : null
+const GenericLoading = ( props ) => {
+  return props.pastDelay ? <Loader loadingText="Loading..." /> : null
 }
 
 const Search = Loadable({
   loader: () => import('./Containers/Search'),
-  loading: Loading,
+  loading: GenericLoading,
   delay: 0
 });
 
 const Results = Loadable({
   loader: () => import('./Containers/Results'),
-  loading: Loading,
+  loading: GenericLoading,
   delay: 0
 });
 
@@ -28,7 +28,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        isAppInitiated : false,
         searchQuery: {
           beerStyleID : "",
           srmColorID : ""
@@ -37,30 +36,12 @@ class App extends Component {
     }
 
     // bind functions
-    this.initiateAppStateAt = this.initiateAppStateAt.bind(this)
     this.updateSearchQuery = this.updateSearchQuery.bind(this)
     this.updateSearchResults = this.updateSearchResults.bind(this)
     this.resetSearchQuery = this.resetSearchQuery.bind(this)
     this.searchFromBreweryDB = this.searchFromBreweryDB.bind(this)
-
-  }
-
-  componentDidMount() {
-    // Allow initial animation to finish
-    this.initiateAppStateAt(5000)
-  }
-
-  /*
-   * -- DOWNSTREAM --
-   */
-  initiateAppStateAt(delay) {
-    // Initiate app state when initial component has finished loading to turn off loading animation
-    setTimeout( () => {
-      this.setState( {
-        ...this.state,
-        isAppInitiated : true
-      });
-    } , delay);
+    this.searchRandomBeer = this.searchRandomBeer.bind(this)
+    this.searchBeerById = this.searchBeerById.bind(this)
   }
 
   /*
@@ -94,12 +75,14 @@ class App extends Component {
     this.updateSearchQuery( reset );
   }
 
+  // ******** API Methods *****************
+
   /*
    * -- DOWNSTREAM --
    * Main method that makes request to server
    * TODO Add to API Component
    */
-  searchFromBreweryDB(params) {
+  searchFromBreweryDB( params ) {
     // TODO move api key to env variable
     const apiKey = "2ac80c8189c3741bc212ff55d424eee0";
     const CORSBridge = "https://cors-anywhere.herokuapp.com";
@@ -117,6 +100,32 @@ class App extends Component {
       });
   }
 
+  /*
+   * -- DOWNSTREAM --
+   * Action method to select a random beer by parameters
+   * TODO Create central API
+   */
+   searchRandomBeer( beerStyleID , srmColorID ) {
+     const defaultParams = "beer/random?hasLabels=Y&withBreweries=Y";
+     const searchParams = `${defaultParams}&styleId=${beerStyleID}&smrId=${srmColorID}`;
+
+     return this.searchFromBreweryDB( searchParams )
+   }
+
+   /*
+    * -- DOWNSTREAM --
+    * Action method to search for a beer by its id
+    * TODO Create central API
+    */
+   searchBeerById( id ) {
+     const beerID = id
+     const searchParams = `beer/${beerID}?&withBreweries=Y`
+
+     return this.searchFromBreweryDB( searchParams )
+
+   }
+
+
   render() {
     return (
       <HashRouter basename={ process.env.PUBLIC_URL }>
@@ -130,9 +139,8 @@ class App extends Component {
                <Search { ...props }
                  state={ this.state }
                  updateSearchQuery={ this.updateSearchQuery }
-                 updateSearchResults={ this.updateSearchResults }
                  resetSearchQuery={ this.resetSearchQuery }
-                 searchFromBreweryDB= { this.searchFromBreweryDB }
+                 searchRandomBeer={ this.searchRandomBeer }
                  />
              }
           />
@@ -141,8 +149,7 @@ class App extends Component {
             render= { (props) =>
               <Results { ...props }
                 state= { this.state }
-                appInitiator= { this.initiateAppStateAt }
-                searchFromBreweryDB= { this.searchFromBreweryDB }
+                searchBeerById= { this.searchBeerById }
                 />
             }
           />

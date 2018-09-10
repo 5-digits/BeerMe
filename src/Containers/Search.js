@@ -16,20 +16,14 @@ class Search extends Component {
     if ( this.props.state.isAppInitiated ) this.props.resetSearchQuery()
   }
 
-  /*
-   * -- DOWNSTREAM --
-   * Action method to select a random beer by parameters
-   * TODO Create central API
-   */
   searchRandomBeer() {
-    const defaultParams = "beer/random?hasLabels=Y&withBreweries=Y";
-    const searchParams = `${defaultParams}&styleId=${this.props.state.searchQuery.beerStyleID}&smrId=${this.props.state.searchQuery.srmColorID}`;
-
-    this.props.searchFromBreweryDB(searchParams)
-      .then(  (resp) => {
-        //redirect to results page /beer/:beerID
-        this.props.history.push(`/beer/${this.props.state.searchResults.id}`);
-      });
+    const beerStyleID = this.props.state.searchQuery.beerStyleID
+    const srmColorID = this.props.state.searchQuery.srmColorID
+    this.props.searchRandomBeer( beerStyleID , srmColorID )
+        .then( () => {
+          //redirect to results page /beer/:beerID
+          this.props.history.push(`/beer/${this.props.state.searchResults.id}`)
+        })
 
   }
 
@@ -55,9 +49,8 @@ class Search extends Component {
 Search.propTypes = {
   state: PropTypes.object.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
-  updateSearchResults: PropTypes.func.isRequired,
   resetSearchQuery: PropTypes.func.isRequired,
-  searchFromBreweryDB: PropTypes.func.isRequired,
+  searchRandomBeer: PropTypes.func.isRequired,
 };
 
 export default Search;
