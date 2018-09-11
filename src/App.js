@@ -39,7 +39,7 @@ class App extends Component {
     this.updateSearchQuery = this.updateSearchQuery.bind(this)
     this.updateSearchResults = this.updateSearchResults.bind(this)
     this.resetSearchQuery = this.resetSearchQuery.bind(this)
-    
+
   }
 
   /*

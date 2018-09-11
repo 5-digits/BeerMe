@@ -37,19 +37,33 @@ class Results extends Component {
     return true;
   }
 
-
-  //TODO Redirect to search page when beer is not found (404 error)
   searchBeerById() {
     const beerID = this.props.match.params.id;
 
     beerAPI.searchBeerById( beerID )
       .then( ( resp ) => {
-        this.props.updateSearchResults( resp )
-        this.setState({
-          resultsExist: true
-        });
-      })
+        // When data is undefined, it means that an error was returned form request
+        if ( typeof resp.data === 'undefined' ) {
+          // When request does not fail, update results and local state
+          this.props.updateSearchResults( resp )
+          this.setState({
+            resultsExist: true
+          })
+        } else {
+          //When a failure is registered, update local state to note that no results are available
+          if ( this.state.resultsExist ) {
+            this.setState({
+              resultsExist: false
+            })
+          }
 
+          //Redirect to search page when beer is not found (404 error)
+          if ( resp.status === 404 ) {
+            // TODO Redirect to Beer Not Found page when created
+            this.props.history.push('/')
+          }
+        }
+      })
   }
 
   render() {
