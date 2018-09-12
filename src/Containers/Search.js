@@ -14,7 +14,8 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    if ( this.props.state.isAppInitiated ) this.props.resetSearchQuery()
+    // Reset query parameters to initial state when user returns to search page
+    this.props.resetSearchQuery()
   }
 
   searchRandomBeer() {
@@ -52,7 +53,7 @@ Search.propTypes = {
   state: PropTypes.object.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
   resetSearchQuery: PropTypes.func.isRequired,
-  updateSearchResults: PropTypes.func.isRequired, 
+  updateSearchResults: PropTypes.func.isRequired,
 };
 
 export default Search;
