@@ -11,7 +11,6 @@ class Results extends Component {
     this.state = {
       resultsExist: true,
     }
-
     // Bind functions
     this.checkThatResultsExist = this.checkThatResultsExist.bind(this)
     this.searchBeerById = this.searchBeerById.bind(this)
@@ -47,7 +46,7 @@ class Results extends Component {
           // When request does not fail, update results and local state
           this.props.updateSearchResults( resp )
           this.setState({
-            resultsExist: true
+              resultsExist: true
           })
         } else {
           //When a failure is registered, update local state to note that no results are available
@@ -56,7 +55,6 @@ class Results extends Component {
               resultsExist: false
             })
           }
-
           //Redirect to search page when beer is not found (404 error)
           if ( resp.status === 404 ) {
             // TODO Redirect to Beer Not Found page when created
@@ -69,10 +67,7 @@ class Results extends Component {
   render() {
     return (
       <section id="results-section">
-        { this.state.resultsExist ?
-          <BeerDetails beerDetails={ this.props.state.searchResults } /> :
-          null
-        }
+        <BeerDetails beerDetails={ this.props.state.searchResults } />
       </section>
     );
   }
