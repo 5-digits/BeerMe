@@ -10,17 +10,6 @@ const beerAPI = {
     const CORSBridge = "https://cors-anywhere.herokuapp.com";
     const breweryDB = "http://api.brewerydb.com/v2";
 
-    // return fetch( ${params}&key=${apiKey}`)
-    //   .then( blob => blob.json() )
-    //   .then( resp => {
-    //     return resp.data
-    //   })
-    //   .catch( error => {
-    //     console.error(error);
-    //     // TODO on Error send to error page
-    //       // Error page should include Beer recommendations - Check if Brewery offers option of more than one random beer
-    //     return error
-    //   });
     return (
       axios.get(`${CORSBridge}/${breweryDB}/${route}`, {
         params: {
@@ -32,7 +21,10 @@ const beerAPI = {
         return resp.data.data
       })
       .catch( error => {
-        return error.response
+        return ({
+          ...error.response,
+          error: true
+        })
       })
     )
   },

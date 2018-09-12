@@ -43,7 +43,7 @@ class Results extends Component {
     beerAPI.searchBeerById( beerID )
       .then( ( resp ) => {
         // When data is undefined, it means that an error was returned form request
-        if ( typeof resp.data === 'undefined' ) {
+        if ( typeof resp.error === 'undefined' ) {
           // When request does not fail, update results and local state
           this.props.updateSearchResults( resp )
           this.setState({
