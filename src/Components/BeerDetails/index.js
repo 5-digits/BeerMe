@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import Skeleton from 'react-loading-skeleton';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+import Skeleton from 'react-loading-skeleton'
 
-import Category from './Category';
-import Info from './Info';
-import Locations from './Locations';
-
+import Category from './Category'
+import Info from './Info'
+import Locations from './Locations'
+import Favorite from '../Favorite'
 
 class BeerDetails extends Component {
 
@@ -41,10 +41,8 @@ class BeerDetails extends Component {
         <div id="results">
           <div className="right-panel">
             <div className="container">
-
+              <Favorite type="floating" />
               { beerDetails.labels ? <img className="beer-label" src={ beerDetails.labels.medium } alt="Beer Label"/> : null }
-
-
               <div className="beer-info">
                 <h1 className="beer-name item bottom">{ beerDetails.nameDisplay }</h1>
                 <h2 className="item bottom">

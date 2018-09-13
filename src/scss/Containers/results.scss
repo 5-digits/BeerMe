@@ -25,6 +25,7 @@
       text-align: center;
       position: fixed;
       .container {
+        position: relative;
         .beer-label {
           width: 200px;
           height: 200px;
@@ -270,6 +271,8 @@
       width: 100%;
       min-height: 250px;
       background: #ccc;
+      box-sizing: border-box;
+      overflow: hidden;
       .loading {
         line-height: 250px;
         font-size: 1em;

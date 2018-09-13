@@ -1,0 +1,22 @@
+.favorite-widget {
+  &.floating {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 100%;
+    right: 56px;
+    top: calc(200px - 40px);
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
+  }
+  i.fa {
+    text-align: center;
+    color: #ed4956;
+    font-size: 25px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    &.fa-heart {
+      animation: .5s expand forwards;
+    }
+  }
+}
