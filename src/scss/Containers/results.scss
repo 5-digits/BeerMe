@@ -26,6 +26,10 @@
       position: fixed;
       .container {
         position: relative;
+        .label-container { 
+          display: inline-block;
+          position: relative;
+        }
         .beer-label {
           width: 200px;
           height: 200px;
