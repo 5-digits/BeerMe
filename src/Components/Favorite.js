@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import Notice from './Notice'
 
 class Favorite extends Component {
 
@@ -6,6 +7,7 @@ class Favorite extends Component {
     super(props)
     this.state = {
       isFavorite: false,
+      showNotice: null
     }
 
     // bind functions
@@ -13,6 +15,7 @@ class Favorite extends Component {
     this.addToFavorites = this.addToFavorites.bind(this)
     this.removeFromFavorites = this.removeFromFavorites.bind(this)
     this.existInFavoriteList = this.existInFavoriteList.bind(this)
+    this.removeNotice = this.removeNotice.bind(this)
   }
 
   componentDidMount() {
@@ -29,8 +32,10 @@ class Favorite extends Component {
 
   handleClick() {
     this.setState( (prevState ) => {
+
       return ({
-        isFavorite: !prevState.isFavorite
+        isFavorite: !prevState.isFavorite,
+        showNotice: true
       })
     })
 
@@ -75,11 +80,38 @@ class Favorite extends Component {
     return typeof matchedID !== 'undefined' ? true : false;
   }
 
+  /*
+  * Update state to remove notice from UI
+  */
+  removeNotice() {
+      this.setState({
+        showNotice: false
+      })
+  }
+
   render() {
+    // Check if timer exist in order to clear it from window, so that we can restart the timing
+    if( window.noticeTimer ) clearTimeout( window.noticeTimer )
+
+    // Start count down to remove notice from UI
+    if ( this.state.showNotice ) {
+      window.noticeTimer = setTimeout( () => {
+        this.removeNotice()
+      }, 3000)
+    }
+
     return (
-      <span className={ `favorite-widget ${this.props.type || "floating"}` } onClick={ this.handleClick }>
-        <i className={ this.state.isFavorite ? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true"></i>
-      </span>
+      <div>
+        <span className={ `favorite-widget ${this.props.type || "floating"}` } onClick={ this.handleClick }>
+          <i className={ this.state.isFavorite ? "fa fa-heart" : "fa fa-heart-o" } aria-hidden="true"></i>
+        </span>
+        {
+          this.state.showNotice !== null ?
+          <Notice type={ this.state.showNotice ? "favorites in" : "favorites out"  } text={ this.state.isFavorite ? "Added to Favorites" : "Removed to Favorites" } /> :
+          null
+        }
+      </div>
+
     );
   }
 
