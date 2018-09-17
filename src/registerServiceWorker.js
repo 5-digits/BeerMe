@@ -20,7 +20,6 @@ const isLocalhost = Boolean(
 
 export default function register() {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-      console.log('service worker has been registered')
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
@@ -67,14 +66,6 @@ function registerValidSW(swUrl) {
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
               console.log('New content is available; please refresh.');
-              // cache static Content
-              caches.open('static')
-                .then( ( cache ) => {
-                  cache.addAll([
-                    'https://fonts.googleapis.com/css?family=Roboto:400,700',
-                    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
-                  ])
-                })
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
