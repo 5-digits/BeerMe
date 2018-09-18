@@ -23,6 +23,12 @@ const Results = Loadable({
   delay: 0
 });
 
+const Favorites = Loadable({
+  loader: () => import('./Containers/Favorites'),
+  loading: GenericLoading,
+  delay: 0
+});
+
 class App extends Component {
 
   constructor(props) {
@@ -100,6 +106,7 @@ class App extends Component {
                 />
             }
           />
+        <Route path="/favorites" component={ Favorites } />
         </div>
       </HashRouter>
 
