@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import beerAPI from '../utilsAPI'
 
-import SearchForm from '../Components/SearchForm';
+import SearchForm from '../Components/SearchForm'
+import Loader from '../Components/Loader'
 
 class Search extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      isSearching : false
+    }
     // bind functions
     this.searchRandomBeer = this.searchRandomBeer.bind(this)
 
@@ -21,6 +25,12 @@ class Search extends Component {
   searchRandomBeer() {
     const beerStyleID = this.props.state.searchQuery.beerStyleID
     const srmColorID = this.props.state.searchQuery.srmColorID
+
+    // Turn on searching state before redirecting to results page
+    this.setState({
+      isSearching: true
+    })
+
     beerAPI.searchRandomBeer( beerStyleID , srmColorID )
         .then( (resp) => {
           this.props.updateSearchResults( resp )
@@ -32,6 +42,8 @@ class Search extends Component {
 
   render() {
     return (
+      this.state.isSearching ?
+      <Loader loadingText="Searching..." /> :
       <section id="search-section">
         <div id="search">
           <div className="main-header">
