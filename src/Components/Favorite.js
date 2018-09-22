@@ -30,6 +30,11 @@ class Favorite extends Component {
     }
   }
 
+  componentWillMount() {
+    //remove timeout before unmounting component 
+    clearTimeout( window.noticeTimer )
+  }
+
   handleClick() {
     this.setState( (prevState ) => {
 
@@ -56,7 +61,17 @@ class Favorite extends Component {
   addToFavorites() {
     const prevFavoriteList = JSON.parse( localStorage.getItem("FAVORITES") )
     //TODO expand items to save on local storage
-    const newFavoriteList = [ ...prevFavoriteList , { beerID : this.props.beerID } ]
+    const newFavoriteList = [
+      ...prevFavoriteList ,
+      {
+        beerID : this.props.beerID,
+        beerLabel: this.props.beerLabel,
+        beerName: this.props.beerName,
+        beerStyle: this.props.beerStyle,
+        abv: this.props.abv,
+        ibu: this.props.ibu,
+      }
+    ]
     localStorage.setItem( "FAVORITES", JSON.stringify(newFavoriteList) )
 
   }

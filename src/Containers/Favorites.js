@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Link } from "react-router-dom"
+import BeerDisplay from '../Components/BeerDisplay'
 
 class Favorites extends Component {
 
@@ -30,20 +30,31 @@ class Favorites extends Component {
       <section id="favorites-section">
         {
           this.state.favoritesList.length > 0 ?
-          (() => {
-            return this.state.favoritesList.map((favorite) => {
-              //TODO add beer display component
-              return (
-                <div key={ favorite.beerID}>
-                  <Link to={`/beer/${favorite.beerID}`}>{ favorite.beerID }</Link>
-                </div>
-              )
-            })
-          })() :
-          //TODO create no results section
+          <div className="favorites">
+            <h1>Favorites</h1>
+            <div className="favorites-list">
+              {
+                (() => {
+                  return this.state.favoritesList.map((favorite) => {
+                    return (
+                      <BeerDisplay
+                        key={ favorite.beerID }
+                        beerID={ favorite.beerID }
+                        beerLabel={ favorite.beerLabel }
+                        beerName={ favorite.beerName }
+                        beerStyle={ favorite.beerStyle }
+                        abv={ favorite.abv }
+                        ibu={ favorite.ibu }
+                        />
+                    )
+                  })
+                })()
+              }
+            </div>
+          </div> :
           <div className="no-favorites">
             <div className="heart-container">
-              <i className="fa fa-heart"></i>
+              <i className="fa fa-heart" aria-hidden="true"></i>
             </div>
             <h1>No beers found in your favorites list!</h1>
           </div>

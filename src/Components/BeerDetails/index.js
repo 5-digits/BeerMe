@@ -34,7 +34,7 @@ class BeerDetails extends Component {
   render() {
     const beerDetails = this.props.beerDetails;
     const beerBrewery = this.props.beerDetails.breweries ? this.props.beerDetails.breweries[0] : null;
-    
+
     // Load skeleton state while data loads
     if ( Object.keys(beerDetails).length !== 0 ) {
       return (
@@ -42,7 +42,14 @@ class BeerDetails extends Component {
           <div className="right-panel">
             <div className="container">
               <div className="label-container">
-                <Favorite type="floating" beerID= { beerDetails.id } />
+                <Favorite type="floating"
+                  beerID= { beerDetails.id }
+                  beerLabel={ beerDetails.labels.icon }
+                  beerName={ beerDetails.nameDisplay }
+                  beerStyle={ beerDetails.style.shortName }
+                  abv={ beerDetails.abv }
+                  ibu={ beerDetails.ibu }
+                />
                 { beerDetails.labels ? <img className="beer-label" src={ beerDetails.labels.medium } alt="Beer Label"/> : null }
               </div>
               <div className="beer-info">
