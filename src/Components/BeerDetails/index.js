@@ -39,7 +39,7 @@ class BeerDetails extends Component {
     if ( Object.keys(beerDetails).length !== 0 ) {
       return (
         <div id="results">
-          <div className="right-panel">
+          <div className="left-panel">
             <div className="container">
               <div className="label-container">
                 <Favorite type="floating"
@@ -74,7 +74,7 @@ class BeerDetails extends Component {
               </a>
             </div>
           </div>
-          <div ref={ this.beerinfo } className="left-panel">
+          <div ref={ this.beerinfo } className="right-panel">
 
             <Info parent={ this.props.beerDetails.description } header={ "DESCRIPTION:"} text={ this.props.beerDetails.description } />
 
@@ -110,7 +110,7 @@ class BeerDetails extends Component {
 const SkeletonState = () => {
   return(
     <div id="results">
-      <div className="right-panel">
+      <div className="left-panel">
         <div className="container">
           <div className="beer-label" style={ { margin: "auto", backgroundColor: "#eeeeee", borderRadius: "5px" }}>
           </div>
@@ -129,7 +129,7 @@ const SkeletonState = () => {
           </div>
         </div>
       </div>
-      <div ref={ this.beerinfo } className="left-panel">
+      <div ref={ this.beerinfo } className="right-panel">
 
       </div>
     </div>

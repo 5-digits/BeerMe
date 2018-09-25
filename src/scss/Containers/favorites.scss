@@ -37,19 +37,33 @@
     a {
       text-decoration: none;
     }
-    .favorites-list {
-      a {
-        &:first-child {
-          .beer-display {
-            border-top-width: 1px;
-          }
-        }
-        &:last-child {
-          .beer-display {
-            border-bottom-width: 1px;
-          }
+  }
+}
+
+@media screen and (min-width: 520px) {
+  #favorites-section {
+
+
+    .favorites {
+      max-width: 970px;
+      margin-left: auto;
+      margin-right: auto;
+      .favorites-list {
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        a {
+          font-size: .7em;
+          line-height: 1.2em;
+          width: 280px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 15px 0px;
         }
       }
+
     }
   }
 }

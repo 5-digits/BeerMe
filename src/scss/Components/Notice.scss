@@ -29,11 +29,22 @@
     left: calc( 50% - 100px);
     box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
     animation: none;
+    z-index: 9999;
+    position: fixed;
+
     &.in {
       animation: .5s notice__slide-up forwards;
     }
     &.out {
       animation: .5s notice__slide-down forwards;
+    }
+  }
+}
+
+@media screen and (min-width: 970px) {
+  .notice {
+    &.favorites {
+      left: calc( 25% - 100px);
     }
   }
 }

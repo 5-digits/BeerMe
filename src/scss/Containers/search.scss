@@ -38,8 +38,9 @@
   align-self: flex-end;
   #search {
     width: 90%;
-    margin-right: 5%;
-    margin-left: 5%;
+    max-width: 520px;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
     flex-direction: column;
     .liquid {
@@ -191,10 +192,6 @@
 
   #search-section {
     #search {
-      max-width: 1080px;
-      width: 95%;
-      margin-left: 2.5%;
-      margin-right: 2.5%;
       .main-header {
         h1 {
           font-size: 2em;
@@ -213,7 +210,7 @@
             flex: 1;
             .slider-container {
               .rangeslider {
-                width: 50%;
+                width: 75%;
                 position: relative;
               }
             }
@@ -236,7 +233,7 @@
           .slider {
             .slider-container {
               .rangeslider {
-                width: 250px;
+                // width: 250px;
               }
             }
           }

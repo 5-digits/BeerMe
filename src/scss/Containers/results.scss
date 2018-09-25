@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    .right-panel {
+    .left-panel {
       background: linear-gradient(to bottom, #bc7012 0%, #efd002 100%);
       background-color: $background-primary;
       width: 100%;
@@ -107,7 +107,7 @@
       }
     }
 
-    .left-panel {
+    .right-panel {
       display: flex;
       box-sizing: border-box;
       flex-direction: column;
@@ -239,7 +239,6 @@
   }
 }
 
-
 .brewery {
   display: block;
 
@@ -304,6 +303,61 @@
       span {
         line-height: 1em;
       }
+    }
+  }
+}
+
+
+@media screen and (min-width: 520px) {
+  #results-section {
+    #results {
+      .left-panel {
+        .container {
+          .beer-info {
+            display: block;
+            max-width: 500px;
+            margin: 2em auto;
+            padding: 15px;
+
+          }
+        }
+
+      }
+    }
+  }
+
+}
+
+@media screen and (min-width: 970px) {
+  #results-section {
+    overflow: hidden;
+    #results {
+      flex-direction: row;
+      .right-panel,
+      .left-panel {
+        position: relative;
+        margin: 0px;
+        width: 50%;
+        box-sizing: border-box;
+      }
+      .left-panel {
+        position: fixed;
+        .container {
+          .see-more {
+            display: none;
+          }
+        }
+
+      }
+      .right-panel {
+        z-index: 1;
+        padding: 100px 50px;
+        margin-left: auto;
+        .description {
+          text-align: left;
+        }
+      }
+
     }
   }
 }

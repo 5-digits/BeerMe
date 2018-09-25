@@ -6,7 +6,7 @@ class BeerDisplay extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+
     }
   }
 
@@ -22,14 +22,23 @@ class BeerDisplay extends Component {
             <h2>{ this.props.beerName }</h2>
             <h3>{ this.props.beerStyle }</h3>
             <div>
-              <div className="label">
-                <span className="title">ABV:</span>
-                <span className="data"> { `${ this.props.abv }%`} </span>
-              </div>
-              <div className="label">
-                <span className="title">IBU:</span>
-                <span className="data">{ this.props.ibu }</span>
-              </div>
+              {
+                this.props.abv ?
+                <div className="label">
+                  <span className="title">ABV:</span>
+                  <span className="data"> { `${ this.props.abv }%`} </span>
+                </div> :
+                null
+              }
+
+              {
+                this.props.ibu ?
+                <div className="label">
+                  <span className="title">IBU:</span>
+                  <span className="data">{ this.props.ibu }</span>
+                </div> :
+                null
+              }
             </div>
           </div>
         </div>
