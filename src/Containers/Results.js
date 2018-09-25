@@ -20,8 +20,20 @@ class Results extends Component {
 
   componentWillMount() {
     // Verify that results exist before loading app
-    if ( !this.checkThatResultsExist() )  this.searchBeerById()
+    if ( !this.checkThatResultsExist() )  {
+      this.searchBeerById()
+    } else if ( this.props.state.searchResults.id !== this.props.match.params.id ) {
+      //When beer id does not match the id user is looking for, reset state and search again
+      this.props.resetSearchResults()
+      this.searchBeerById()
+    }
   }
+
+  componentDidMount() {
+    // fixes issue where result page maintains scroll position from the current screen
+    window.scrollTo(0 , 0)
+  }
+
 
   //Verify that results do exist in app state, otherwise update local state
   checkThatResultsExist() {
@@ -75,7 +87,8 @@ class Results extends Component {
 
 Results.propTypes = {
   state: PropTypes.object.isRequired,
-  updateSearchResults : PropTypes.func.isRequired
+  updateSearchResults : PropTypes.func.isRequired,
+  resetSearchResults: PropTypes.func.isRequired
 };
 
 export default Results;

@@ -45,6 +45,7 @@ class App extends Component {
     this.updateSearchQuery = this.updateSearchQuery.bind(this)
     this.updateSearchResults = this.updateSearchResults.bind(this)
     this.resetSearchQuery = this.resetSearchQuery.bind(this)
+    this.resetSearchResults = this.resetSearchResults.bind(this)
 
   }
 
@@ -61,8 +62,8 @@ class App extends Component {
   /*
    * -- DOWNSTREAM --
    */
-  updateSearchResults(newResults) {
-    this.setState( {
+  updateSearchResults( newResults = {} ) {
+    this.setState({
       ...this.state,
       searchResults : newResults
     });
@@ -77,6 +78,13 @@ class App extends Component {
       srmColorID : "20"
     }
     this.updateSearchQuery( reset );
+  }
+
+  /*
+   * -- DOWNSTREAM --
+   */
+  resetSearchResults() {
+    this.updateSearchResults()
   }
 
   render() {
@@ -102,7 +110,8 @@ class App extends Component {
             render= { (props) =>
               <Results { ...props }
                 state= { this.state }
-                updateSearchResults={this.updateSearchResults}
+                updateSearchResults={ this.updateSearchResults }
+                resetSearchResults= { this.resetSearchResults }
                 />
             }
           />
