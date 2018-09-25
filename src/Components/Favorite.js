@@ -30,8 +30,8 @@ class Favorite extends Component {
     }
   }
 
-  componentWillMount() {
-    //remove timeout before unmounting component 
+  componentWillUnmount() {
+    //remove timeout before unmounting component
     clearTimeout( window.noticeTimer )
   }
 
