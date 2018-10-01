@@ -13,7 +13,7 @@ class BeerDisplay extends Component {
   render() {
 
     return (
-      <Link to={`/beer/${this.props.beerID}`}>
+      <Link to={`/beer/${this.props.beerID}`} title="Click to view details">
         <div className="beer-display">
           <div className="label-container">
               <img src={ this.props.beerLabel } alt="beer label" />
