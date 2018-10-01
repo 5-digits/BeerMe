@@ -5,7 +5,7 @@ import Loadable from 'react-loadable'
 // Components
 import Header from './Components/Header'
 import Loader from './Components/Loader'
-
+import Menu from './Components/Menu'
 //Containers
 const GenericLoading = ( props ) => {
   return props.pastDelay ? <Loader loadingText="Loading..." /> : null
@@ -106,16 +106,17 @@ class App extends Component {
              }
           />
 
-        <Route path="/beer/:id"
-            render= { (props) =>
-              <Results { ...props }
-                state= { this.state }
-                updateSearchResults={ this.updateSearchResults }
-                resetSearchResults= { this.resetSearchResults }
-                />
-            }
-          />
-        <Route path="/favorites" component={ Favorites } />
+          <Route path="/beer/:id"
+              render= { (props) =>
+                <Results { ...props }
+                  state= { this.state }
+                  updateSearchResults={ this.updateSearchResults }
+                  resetSearchResults= { this.resetSearchResults }
+                  />
+              }
+            />
+          <Route path="/favorites" component={ Favorites } />
+          <Menu />
         </div>
       </HashRouter>
 
