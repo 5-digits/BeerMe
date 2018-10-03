@@ -23,8 +23,7 @@
     }
   }
 
-  .menu-overlay {
-    background-color: rgba(255,255,255,.9);
+  .menu-items-container {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -32,6 +31,18 @@
     width: 100%;
     box-sizing: border-box;
     z-index: 99999;
+    .menu-overlay {
+      position: absolute;
+      display: block;
+      bottom: 15px;
+      right: 15px;
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      background-color: rgba(255,255,255,.9);
+      transform: scale(0);
+      animation: menu__blow-up .5s forwards;
+    }
     .menu-items {
       position: absolute;
       bottom: 0;
@@ -46,12 +57,15 @@
           bottom: 15px;
           right: 15px;
           display: flex;
+          opacity: 0;
+          transform: translateX(-50%);
+          animation: menu__slide-in .7s forwards;
           a {
             display: flex;
             text-decoration: none;
           }
           span {
-            font-size: 2em;
+            font-size: 1.5em;
             align-self: center;
             margin-right: 15px;
             text-transform: uppercase;
@@ -60,17 +74,30 @@
           .button {
             position: relative;
             i {
-              transform: scale(2, 2);
+              font-size: 2em;
             }
           }
           &:nth-child(1) {
             bottom: 15px;
+            animation-delay: .3s;
           }
           &:nth-child(2) {
-            bottom: 120px;
+            bottom: 140px;
+            animation-delay: .4s;
+            .button {
+              i {
+                color: #3496fa;
+              }
+            }
           }
           &:nth-child(3) {
-            bottom: 225px;
+            bottom: 265px;
+            animation-delay: .5s;
+            .button {
+              i {
+                color: #ed4956;
+              }
+            }
           }
         }
       }
@@ -78,7 +105,7 @@
   }
 
   &[ data-opened="false" ] {
-    .menu-overlay {
+    .menu-items-container {
       display: none;
     }
   }
@@ -86,5 +113,6 @@
     .menu-button {
       display: none;
     }
+
   }
 }

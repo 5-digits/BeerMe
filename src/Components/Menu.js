@@ -32,7 +32,8 @@ class Menu extends Component {
         <div className="menu-button button" onClick={ this.openMenu }>
           <i className="fa fa-bars" aria-hidden="true"></i>
         </div>
-        <div className="menu-overlay" onClick={ this.closeMenu }>
+        <div className="menu-items-container" onClick={ this.closeMenu }>
+          <div className="menu-overlay" />
           <div className="menu-items">
             <ul>
               <li onClick={ this.closeMenu }>

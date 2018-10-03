@@ -92,3 +92,23 @@
     transform: scale(1);
   }
 }
+
+@keyframes menu__blow-up {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(50);
+  }
+}
+
+@keyframes menu__slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
