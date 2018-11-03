@@ -31,9 +31,12 @@ class Search extends Component {
       isSearching: true
     })
 
+    // WARNING had to add an additional request, because BreweryAPI removed the labels field from the random method
     beerAPI.searchRandomBeer( beerStyleID , srmColorID )
-        .then( (resp) => {
-          this.props.updateSearchResults( resp )
+        .then( (resp) => resp.id )
+        .then( (beerID) => beerAPI.searchBeerById( beerID))
+        .then( ( beerDetails ) => {
+          this.props.updateSearchResults( beerDetails )
           //redirect to results page /beer/:beerID
           this.props.history.push(`/beer/${this.props.state.searchResults.id}`)
         })

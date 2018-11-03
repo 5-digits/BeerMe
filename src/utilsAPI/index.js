@@ -8,7 +8,7 @@ const beerAPI = {
     // TODO move api key to env variable
     const apiKey = "2ac80c8189c3741bc212ff55d424eee0";
     const CORSBridge = "https://cors-anywhere.herokuapp.com";
-    const breweryDB = "http://api.brewerydb.com/v2";
+    const breweryDB = "https://api.brewerydb.com/v2";
 
     return (
       axios.get(`${CORSBridge}/${breweryDB}/${route}`, {

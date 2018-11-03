@@ -26,18 +26,28 @@ class Location extends Component {
 
     //bind functions
     this.isInViewport = this.isInViewport.bind(this)
+    this.triggerLoad = this.triggerLoad.bind(this)
   }
 
   componentDidMount() {
 
     // Need to check when component is on view to load the Map Components
-    window.addEventListener('scroll', () => {
-      if ( this.isInViewport() ) {
-        this.setState({
+    window.addEventListener('scroll', this.triggerLoad );
+  }
+
+  componentWillUnmount() {
+    //Clean up event listeners
+    window.removeEventListener('scroll', this.triggerLoad );
+  }
+
+  triggerLoad() {
+    this.setState( (prevState) => {
+      if ( prevState.readyForLoad !== true ) {
+        return({
           readyForLoad: true,
         })
       }
-    });
+    })
   }
 
   /**
@@ -52,6 +62,7 @@ class Location extends Component {
   render() {
     const location = this.props.location;
     const hoursListing = location.hoursOfOperation ? location.hoursOfOperation.split('\n')[0] : 'N/A';
+    console.dir(this.props.location)
     return (
       <div className="location" ref={ this.mapContainer }>
         <div>

@@ -8,6 +8,8 @@ import Info from './Info'
 import Locations from './Locations'
 import Favorite from '../Favorite'
 
+import BeerLoader from '../../images/beer-label-loader.gif'
+
 class BeerDetails extends Component {
 
   constructor(props) {
@@ -44,13 +46,16 @@ class BeerDetails extends Component {
               <div className="label-container">
                 <Favorite type="floating"
                   beerID= { beerDetails.id }
-                  beerLabel={ beerDetails.labels.icon }
+                  beerLabel={ beerDetails.labels ? beerDetails.labels.icon : null }
                   beerName={ beerDetails.nameDisplay }
                   beerStyle={ beerDetails.style.shortName }
                   abv={ beerDetails.abv }
                   ibu={ beerDetails.ibu }
                 />
-                { beerDetails.labels ? <img className="beer-label" src={ beerDetails.labels.medium } alt="Beer Label"/> : null }
+                { beerDetails.labels ?
+                  <img className="beer-label" src={ beerDetails.labels.medium } alt="Beer Label"/> :
+                  <img className="beer-label" src={ BeerLoader } alt="Beer Label Missing"/>
+                }
               </div>
               <div className="beer-info">
                 <h1 className="beer-name item bottom">{ beerDetails.nameDisplay }</h1>
